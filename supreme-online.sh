@@ -8,5 +8,6 @@ sb_version="Supreme Online Version 1"
 #SUPREME ONLINE#
 ################
 
-echo "test"
+echo "testing reboot"
 sleep 3
+sudo reboot
