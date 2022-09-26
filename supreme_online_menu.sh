@@ -2,6 +2,8 @@
 # SUPREME ULTRA
 # The Supreme Team https://github.com/SupremePi/
 
+sb_version="Supreme ToolKit Version 2"
+
 ################
 #SUPREME ONLINE#
 ################
