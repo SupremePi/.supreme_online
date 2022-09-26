@@ -8,5 +8,5 @@ sb_version="Supreme Online Version 1"
 #SUPREME ONLINE#
 ################
 
-echo "testing"
+echo "test 1"
 sleep 5
