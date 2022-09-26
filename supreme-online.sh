@@ -10,3 +10,4 @@ sb_version="Supreme Online Version 1"
 
 echo "test 1"
 sleep 5
+clear
