@@ -40,7 +40,7 @@ function main_menu() {
 
         case "$choice" in
             1) ultra_restore  ;;
-            2) ultra_update  ;;
+            2) supreme_update  ;;
 	    3) supreme_off  ;;
             4) supreme_restart  ;;
             -) none ;;
@@ -57,7 +57,7 @@ function ultra_restore() {
 }
 
 function ultra_update() {
-    echo "NO UPDATES FOUND! "
+    echo "CHECK FOR UPDATES COMING SOON"
 	sleep 4
 	clear
 }
