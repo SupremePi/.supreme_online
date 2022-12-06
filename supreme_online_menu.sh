@@ -31,7 +31,7 @@ function main_menu() {
             --menu "$sb_version" 25 75 20 \
             - "*** AVAILABLE ONLINE SELECTIONS ***" \
             - "" \
-	        1 " -  FULL SUPREME ULTRA RESTORE" \
+	    1 " -  FULL SUPREME ULTRA RESTORE" \
             2 " -  CHECK FOR UPDATES/FIXES" \
 			- "" \
             3 " -  POWER OFF PI" \
@@ -40,8 +40,8 @@ function main_menu() {
 
         case "$choice" in
             1) ultra_restore  ;;
-            2) ultra_update  ;;
-	        3) supreme_off  ;;
+            1) ultra_update  ;
+	    3) supreme_off  ;;
             4) supreme_restart  ;;
             -) none ;;
             *)  break ;;
@@ -57,7 +57,7 @@ function ultra_restore() {
 }
 
 function ultra_update() {
-    echo "CHECK FOR UPDATES COMING SOON"
+    echo "NO UPDATES FOUND! "
 	sleep 4
 	clear
 }
