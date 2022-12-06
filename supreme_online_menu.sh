@@ -40,7 +40,7 @@ function main_menu() {
 
         case "$choice" in
             1) ultra_restore  ;;
-            1) ultra_update  ;
+            1) ultra_update  ;;
 	    3) supreme_off  ;;
             4) supreme_restart  ;;
             -) none ;;
