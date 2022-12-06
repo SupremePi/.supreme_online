@@ -33,14 +33,14 @@ function main_menu() {
             - "" \
 	    1 " -  FULL SUPREME ULTRA RESTORE" \
             2 " -  CHECK FOR UPDATES/FIXES" \
-			- "" \
+	    - "" \
             3 " -  POWER OFF PI" \
             4 " -  RESTART PI" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) ultra_restore  ;;
-            1) ultra_update  ;;
+            2) ultra_update  ;;
 	    3) supreme_off  ;;
             4) supreme_restart  ;;
             -) none ;;
