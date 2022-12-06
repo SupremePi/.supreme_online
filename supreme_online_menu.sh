@@ -40,7 +40,7 @@ function main_menu() {
 
         case "$choice" in
             1) ultra_restore  ;;
-            2) supreme_update  ;;
+            2) ultra_update  ;;
 	        3) supreme_off  ;;
             4) supreme_restart  ;;
             -) none ;;
@@ -48,12 +48,14 @@ function main_menu() {
         esac
     done
 	clear
-}	
+}
+
 function ultra_restore() {
     echo "FULL RESTORE COMING SOON"
 	sleep 4
 	clear
 }
+
 function ultra_update() {
     echo "CHECK FOR UPDATES COMING SOON"
 	sleep 4
