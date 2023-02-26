@@ -17,6 +17,10 @@ sb_menu=$sb_toolkit/retropiemenu
 
 infobox=""
 infobox="${infobox}\n"
+infobox="${infobox}SUPREME NEWS! TEAM SPLIT.\n"
+infobox="${infobox}\n"
+infobox="${infobox}PLEASE UNFOLLOW THE SUPREME RETRO GAMING YOUTUBE AND PATREON THIS IS NOT US.\n"
+infobox="${infobox}\n"
 infobox="${infobox}This Menu Will Let You Fully Restore Or Update Ultra!.\n"
 infobox="${infobox}\n"
 infobox="${infobox}This Can Happen By Basic User Updates Or Manual Changes.\n"
