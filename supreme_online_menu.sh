@@ -46,11 +46,12 @@ function main_menu() {
 			2 " -  ULTRA TOOL-KIT UPDATE CHECKER" \
             3 " -  CHECK FOR ULTRA FIXES" \
 			4 " -  ULTRA ATTRACT-MODE RESTORE" \
+			5 " -  SUPREME INSTALLERS" \
 	        - "" \
-            5 " -  POWER OFF PI" \
-            6 " -  RESTART PI" \
+            6 " -  POWER OFF PI" \
+            7 " -  RESTART PI" \
 	        - "" \
-			7 " -  SUPREME CREDITS" \
+			8 " -  SUPREME CREDITS" \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -58,9 +59,10 @@ function main_menu() {
             2) ultra_update  ;;
 			3) ultra_fixes  ;;
 			4) ultra_attract  ;;
-	        5) supreme_off  ;;
-            6) supreme_restart  ;;
-			7) supreme_credits  ;;
+			5) ultra_installers  ;;
+	        6) supreme_off  ;;
+            7) supreme_restart  ;;
+			8) supreme_credits  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -238,6 +240,38 @@ function ultra_attract() {
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
     sleep 2
 }
+
+function ultra_installers() {
+    local choice
+	
+    while true; do
+        choice=$(dialog --backtitle "$BACKTITLE" --title " SUPREME - INSTALLERS " \
+            --ok-label OK --cancel-label Exit \
+            --menu "$sb_version" 25 75 20 \
+            - "*** AVAILABLE INSTALLERS ***" \
+            - "" \
+	        1 " -  INSTALL TAMO PLUS (By ALLRiPPED & Supreme RetroPie)" \
+			2 " -  INSTALL DEVILS-BOX (By The Retro-Devils)" \
+            2>&1 > /dev/tty)
+
+        case "$choice" in
+            1) installer_tamoplus  ;;
+            2) installer_devilsbox  ;;
+            -) none ;;
+            *)  break ;;
+        esac
+    done
+	clear
+}
+
+installer_tamoplus() {
+curl -sSL https://bit.ly/Install-TAMO | bash
+}
+
+installer_devilsbox() {
+curl -sSL bit.ly/Install-Devils-Box | bash
+}
+
 
 function supreme_off() {
 	dialog --infobox "...Shutting Down..." 3 23 ; sleep 1
