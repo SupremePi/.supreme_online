@@ -51,7 +51,7 @@ function main_menu() {
             6 " -  POWER OFF PI" \
             7 " -  RESTART PI" \
 	        - "" \
-			7 " -  SUPREME CREDITS" \
+			8 " -  SUPREME CREDITS" \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -59,10 +59,10 @@ function main_menu() {
             2) ultra_update  ;;
 			3) ultra_fixes  ;;
 			4) ultra_attract  ;;
-			4) installer_menu  ;;			
-	        5) supreme_off  ;;
-            6) supreme_restart  ;;
-			7) supreme_credits  ;;
+			5) installer_menu  ;;			
+	        6) supreme_off  ;;
+            7) supreme_restart  ;;
+			8) supreme_credits  ;;
             -) none ;;
             *)  break ;;
         esac
