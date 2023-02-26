@@ -8,7 +8,7 @@ echo "SUPREME NEWS! TEAM SPLIT!"
 echo ""
 echo "PLEASE UNFOLLOW THE SUPREME RETRO GAMING YOUTUBE AND PATREON THIS IS NOT US."
 echo ""
-sleep 40
+sleep 10
 
 
 ################
