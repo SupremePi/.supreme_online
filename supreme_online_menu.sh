@@ -45,24 +45,22 @@ function main_menu() {
 	        1 " -  ULTRA TOOL-KIT RESTORE (CLEAN INSTALL)" \
 			2 " -  ULTRA TOOL-KIT UPDATE CHECKER" \
             3 " -  CHECK FOR ULTRA FIXES" \
-			4 " -  ULTRA ATTRACT-MODE RESTORE" \
-			5 " -  ULTRA INSTALLERS" \			
+			4 " -  ULTRA ATTRACT-MODE RESTORE" \	
 	        - "" \
-            6 " -  POWER OFF PI" \
-            7 " -  RESTART PI" \
+            5 " -  POWER OFF PI" \
+            6 " -  RESTART PI" \
 	        - "" \
-			8 " -  SUPREME CREDITS" \
+			7 " -  SUPREME CREDITS" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) ultra_restore  ;;
             2) ultra_update  ;;
 			3) ultra_fixes  ;;
-			4) ultra_attract  ;;
-			5) installer_menu  ;;			
-	        6) supreme_off  ;;
-            7) supreme_restart  ;;
-			8) supreme_credits  ;;
+			4) ultra_attract  ;;		
+	        5) supreme_off  ;;
+            6) supreme_restart  ;;
+			7) supreme_credits  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -239,37 +237,6 @@ function ultra_attract() {
     rm -rf ~/.supreme_attract/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
     sleep 2
-}
-
-function installer_menu() {
-    local choice
-	
-    while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " SUPREME - INSTALLERS " \
-            --ok-label OK --cancel-label Exit \
-            --menu "$sb_version" 25 75 20 \
-            - "*** AVAILABLE INSTALLERS ***" \
-            - "" \
-	        1 " -  INSTALL TAMPO PLUS (CLEAN INSTALL)" \
-			2 " -  INSTALL DEVILS-BOX (CLEAN INSTALL)" \
-            2>&1 > /dev/tty)
-
-        case "$choice" in
-            1) insatller_tampoplus  ;;
-            2) installer_devilbox  ;;
-            -) none ;;
-            *)  break ;;
-        esac
-    done
-	clear
-}
-
-function insatller_tampoplus() {
-curl -sSL https://bit.ly/Install-TAMO | bash
-}
-
-function installer_devilbox() {
-curl -sSL bit.ly/Install-Devils-Box | bash
 }
 
 function supreme_off() {
