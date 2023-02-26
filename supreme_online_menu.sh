@@ -17,10 +17,6 @@ sb_menu=$sb_toolkit/retropiemenu
 
 infobox=""
 infobox="${infobox}\n"
-infobox="${infobox}SUPREME NEWS! TEAM SPLIT.\n"
-infobox="${infobox}\n"
-infobox="${infobox}PLEASE UNFOLLOW THE SUPREME RETRO GAMING YOUTUBE AND PATREON THIS IS NOT US.\n"
-infobox="${infobox}\n"
 infobox="${infobox}This Menu Will Let You Fully Restore Or Update Ultra!.\n"
 infobox="${infobox}\n"
 infobox="${infobox}This Can Happen By Basic User Updates Or Manual Changes.\n"
@@ -45,7 +41,7 @@ function main_menu() {
 	        1 " -  ULTRA TOOL-KIT RESTORE (CLEAN INSTALL)" \
 			2 " -  ULTRA TOOL-KIT UPDATE CHECKER" \
             3 " -  CHECK FOR ULTRA FIXES" \
-			4 " -  ULTRA ATTRACT-MODE RESTORE" \	
+			4 " -  ULTRA ATTRACT-MODE RESTORE" \
 	        - "" \
             5 " -  POWER OFF PI" \
             6 " -  RESTART PI" \
@@ -57,7 +53,7 @@ function main_menu() {
             1) ultra_restore  ;;
             2) ultra_update  ;;
 			3) ultra_fixes  ;;
-			4) ultra_attract  ;;		
+			4) ultra_attract  ;;
 	        5) supreme_off  ;;
             6) supreme_restart  ;;
 			7) supreme_credits  ;;
