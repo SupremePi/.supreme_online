@@ -204,23 +204,26 @@ function ultra_fixes() {
 	
 	echo -e "$(tput setaf 2)Now Adding Ultra Fixes! Please Wait $(tput sgr0)"
 	#Supreme fixes
-	if [ -f $HOME/RetroPie/videoloadingscreens/*.mp4 ]; then
-	#Just incase user made changes
-	sudo chown pi:pi -R $HOME/RetroPie/videoloadingscreens/
+    sudo chown pi:pi -R $HOME/RetroPie/videoloadingscreens/
 	sudo chmod 755 -R $HOME/RetroPie/videoloadingscreens/	
+	
+	#Just incase user made changes
 	if [ ! -d $HOME/RetroPie/videoloadingscreens/default ]; then
     mkdir $HOME/RetroPie/videoloadingscreens/default
 	fi
+	
 	#Keep tampo plus folders if found but mv extra stuff to default folder.
+	if [ -f $HOME/RetroPie/videoloadingscreens/*.mp4 ]; then
 	cd $HOME/RetroPie/videoloadingscreens/
-	#sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremteam -or -name carbonite -o -name '.' \) -exec mv {} $HOME/RetroPie/videoloadingscreens/default/ \;
+	sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremteam -or -name carbonite -o -name '.' \) -exec mv {} $HOME/RetroPie/videoloadingscreens/default/ \;
 	cd $HOME/RetroPie/videoloadingscreens/default/
-    #sudo rm -R "!(*.mp4)"
-	cd $HOME
+    sudo rm -R "!(*.mp4)"
+	cd $HOME	
 	if [ ! -d $HOME/RetroPie/videoloadingscreens/supmremmteam ]; then
 	mkdir $HOME/RetroPie/videoloadingscreens/supmremmteam
-	mv $HOME/RetroPie/videoloadingscreens/default/* $HOME/RetroPie/videoloadingscreens/supmremmteam/
 	fi
+	mv $HOME/RetroPie/videoloadingscreens/default/* $HOME/RetroPie/videoloadingscreens/supmremmteam/
+	fi 
 	
 	#Quick User or Permission fix
     sudo chmod +x /etc/profile.d/10-retropie* &> /dev/null
