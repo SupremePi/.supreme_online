@@ -205,7 +205,7 @@ function ultra_fixes() {
 	sleep 3
 	clear
 	
-	echo -e "$(tput setaf 2)Now Adding Ultra Fixes! Please Wait $(tput sgr0)"
+	echo -e "$(tput setaf 2)Now Adding Ultra Fixes! Please Wait... $(tput sgr0)"
 	#Supreme fixes
     sudo chown pi:pi -R $HOME/RetroPie/videoloadingscreens/
 	sudo chmod 755 -R $HOME/RetroPie/videoloadingscreens/	
