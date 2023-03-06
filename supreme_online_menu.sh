@@ -213,7 +213,7 @@ function ultra_fixes() {
 	fi
 	#Keep tampo plus folders if found but mv extra stuff to default folder.
 	cd $HOME/RetroPie/videoloadingscreens/
-	sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremteam -or -name carbonite -o -name '.' \) -exec mv {} $HOME/RetroPie/videoloadingscreens/default/ \;
+	#sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremteam -or -name carbonite -o -name '.' \) -exec mv {} $HOME/RetroPie/videoloadingscreens/default/ \;
 	cd $HOME/RetroPie/videoloadingscreens/default/
     #sudo rm -R "!(*.mp4)"
 	cd $HOME
