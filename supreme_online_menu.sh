@@ -158,6 +158,7 @@ function ultra_restore() {
     clear
     rm -rf $rp_menu/* && rsync -av $sb_menu/ $rp_menu && cp $sb_toolkit/retropie-gml/gamelist.xml /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
     sudo chown -R pi:pi $sb_menu/
+	sudo chmod 755 -R $sb_menu/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
     sleep 3
     clear
