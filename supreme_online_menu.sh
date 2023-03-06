@@ -189,7 +189,7 @@ function ultra_update() {
 function ultra_fixes() {
 	clear
 	echo -e "$(tput setaf 2)Now Downloading All Supreme Ultra Fixes! $(tput sgr0)"
-	sleep 1
+	sleep 3
 	
 	#Sync All New Files	
 	cd $HOME/
@@ -202,7 +202,7 @@ function ultra_fixes() {
 	sudo rsync -urv opt/ /opt/
     sudo rsync -urv usr/ /usr/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
-	sleep 1
+	sleep 3
 	clear
 	
 	echo -e "$(tput setaf 2)Now Adding Ultra Fixes! Please Wait $(tput sgr0)"
@@ -233,10 +233,10 @@ function ultra_fixes() {
     sudo chmod +x /etc/samba/smb.conf* &> /dev/null
 	sudo chown pi:pi -R /opt/retropie/configs/
 	sudo chown pi:pi -R /home/pi/
-    sleep 1
+    sleep 2
     rm -rf ~/.supreme_fixes/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
-    sleep 1
+    sleep 3
 	clear
 }
 
