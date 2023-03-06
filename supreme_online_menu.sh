@@ -200,7 +200,9 @@ function ultra_fixes() {
     sudo rsync -urv home/ /home/
 	sudo rsync -urv opt/ /opt/
     sudo rsync -urv usr/ /usr/
+	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
 	
+	echo -e "$(tput setaf 2)Now Adding Ultra Fixes! Please Wait $(tput sgr0)"
 	#Supreme fixes
 	if [ -f $HOME/RetroPie/videoloadingscreens/*.mp4 ]; then
 	#Just incase user made changes
