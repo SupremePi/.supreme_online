@@ -219,7 +219,7 @@ function ultra_fixes() {
 	if [ -f $HOME/RetroPie/videoloadingscreens/default.mp4 ]; then
 	mv $HOME/RetroPie/videoloadingscreens/*.mp4 $HOME/RetroPie/videoloadingscreens/default/
     cd $HOME/RetroPie/videoloadingscreens/	
-	sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremteam -or -name carbonite -o -name '.' \) -delete
+	sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremeteam -or -name carbonite -o -name '.' \) -delete
     if [ ! -d $HOME/RetroPie/videoloadingscreens/supremeteam ]; then
 	mkdir $HOME/RetroPie/videoloadingscreens/supremeteam
 	fi
