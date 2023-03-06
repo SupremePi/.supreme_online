@@ -215,7 +215,6 @@ function ultra_fixes() {
 	cd $HOME/RetroPie/videoloadingscreens/
 	sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremteam -or -name carbonite -o -name '.' \) -exec mv {} $HOME/RetroPie/videoloadingscreens/default/ \;
 	cd $HOME/RetroPie/videoloadingscreens/default/
-    sudo rm -R "!(*.mp4)"
 	cd $HOME
 	if [ ! -d $HOME/RetroPie/videoloadingscreens/supmremmteam ]; then
 	mkdir $HOME/RetroPie/videoloadingscreens/supmremmteam
