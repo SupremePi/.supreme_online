@@ -216,16 +216,16 @@ function ultra_fixes() {
 	fi
 	
 	#Keep tampo plus folders if found but mv extra stuff to default folder.
-	if [ -f $HOME/RetroPie/videoloadingscreens/*.mp4 ]; then
-	cd $HOME/RetroPie/videoloadingscreens/
-	sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremteam -or -name carbonite -o -name '.' \) -exec mv {} $HOME/RetroPie/videoloadingscreens/default/ \;
-	cd $HOME/RetroPie/videoloadingscreens/default/
-    sudo rm -R !(*.mp4)
-	cd $HOME	
-	if [ ! -d $HOME/RetroPie/videoloadingscreens/supmremmteam ]; then
-	mkdir $HOME/RetroPie/videoloadingscreens/supmremmteam
+	if [ -f $HOME/RetroPie/videoloadingscreens/default.mp4 ]; then
+	mv $HOME/RetroPie/videoloadingscreens/*.mp4 $HOME/RetroPie/videoloadingscreens/default/
+    cd $HOME/RetroPie/videoloadingscreens/	
+	sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremteam -or -name carbonite -o -name '.' \) -delete
+    if [ ! -d $HOME/RetroPie/videoloadingscreens/supremeteam ]; then
+	mkdir $HOME/RetroPie/videoloadingscreens/supremeteam
 	fi
-	mv $HOME/RetroPie/videoloadingscreens/default/* $HOME/RetroPie/videoloadingscreens/supmremmteam/
+	if [ ! -f $HOME/RetroPie/videoloadingscreens/supremeteam/default.mp4 ]; then
+	mv $HOME/RetroPie/videoloadingscreens/default/* $HOME/RetroPie/videoloadingscreens/supremeteam/
+	fi
 	fi 
 	
 	#Quick User or Permission fix
@@ -239,6 +239,46 @@ function ultra_fixes() {
     sleep 3
 	clear
 }
+
+function ultra_attract() {
+	clear
+	echo -e "$(tput setaf 2)Now Restoring Supreme Atrract-Mode! $(tput sgr0)"
+	#Sync All New Files	
+	cd $HOME/
+    git clone https://github.com/SupremePi/.supreme_attract.git
+    cd .supreme_attract/
+    sudo rsync -urv ambootcheck/ /opt/retropie/configs/all/attractmode/ambootcheck/
+	sudo rsync -urv emulators/ /opt/retropie/configs/all/attractmode/emulators/
+	sudo rsync -urv intro/ /opt/retropie/configs/all/attractmode/intro/
+	sudo rsync -urv layouts/ /opt/retropie/configs/all/attractmode/layouts/
+	sudo rsync -urv mame-config/ /opt/retropie/configs/all/attractmode/mame-config/
+	sudo rsync -urv menu-art/ /opt/retropie/configs/all/attractmode/menu-art/
+	sudo rsync -urv modules/ /opt/retropie/configs/all/attractmode/modules/
+	sudo rsync -urv plugins/ /opt/retropie/configs/all/attractmode/plugins/
+	sudo rsync -urv romlists/ /opt/retropie/configs/all/attractmode/romlists/
+	sudo rsync -urv scraper/ /opt/retropie/configs/all/attractmode/scraper/
+	sudo rsync -urv screensaver/ /opt/retropie/configs/all/attractmode/screensaver/
+	sudo rsync -urv scripts/ /opt/retropie/configs/all/attractmode/scripts/
+	sudo rsync -urv sounds/ /opt/retropie/configs/all/attractmode/sounds/
+	sudo rsync -urv stats/ /opt/retropie/configs/all/attractmode/stats/
+	
+	if [ -f /opt/retropie/configs/all/attractmode/attract.am ]; then 
+	sudo mv /opt/retropie/configs/all/attractmode/attract.am /opt/retropie/configs/all/attractmode/attract.am.bk
+    fi
+    if [ -f /opt/retropie/configs/all/attractmode/attract.cfg ]; then 
+	sudo mv /opt/retropie/configs/all/attractmode/attract.cfg /opt/retropie/configs/all/attractmode/attract.cfg.bk
+    fi
+
+	sudo rsync -urv attract.am /opt/retropie/configs/all/attractmode/
+	sudo rsync -urv attract.cfg /opt/retropie/configs/all/attractmode/
+    sudo chmod +x -R /opt/retropie/configs/all/attractmode/*
+    sudo chown pi:pi -R /opt/retropie/configs/all/attractmode/*
+	sleep 1
+    rm -rf ~/.supreme_attract/
+	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+    sleep 2
+}
+
 
 function ultra_attract() {
 	clear
