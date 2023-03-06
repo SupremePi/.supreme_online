@@ -199,8 +199,11 @@ function ultra_fixes() {
     sudo rsync -urv home/ /home/
 	sudo rsync -urv opt/ /opt/
     sudo rsync -urv usr/ /usr/
+	#Quick User or Permission fix
     sudo chmod +x /etc/profile.d/10-retropie* &> /dev/null
     sudo chmod +x /etc/samba/smb.conf* &> /dev/null
+	sudo chown pi:pi -R /opt/retropie/configs/
+	sudo chown pi:pi -R /home/pi/
     sleep 1
     rm -rf ~/.supreme_fixes/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
