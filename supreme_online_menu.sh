@@ -189,6 +189,7 @@ function ultra_update() {
 function ultra_fixes() {
 	clear
 	echo -e "$(tput setaf 2)Now Downloading All Supreme Ultra Fixes! $(tput sgr0)"
+	sleep 1
 	
 	#Sync All New Files	
 	cd $HOME/
@@ -201,6 +202,8 @@ function ultra_fixes() {
 	sudo rsync -urv opt/ /opt/
     sudo rsync -urv usr/ /usr/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+	sleep 1
+	clear
 	
 	echo -e "$(tput setaf 2)Now Adding Ultra Fixes! Please Wait $(tput sgr0)"
 	#Supreme fixes
@@ -217,7 +220,7 @@ function ultra_fixes() {
 	cd $HOME/RetroPie/videoloadingscreens/
 	sudo find . -maxdepth 1 ! \( -name default -or -name merryxmas -or -name devilchromey -or -name halloweenspecial -or -name supremteam -or -name carbonite -o -name '.' \) -exec mv {} $HOME/RetroPie/videoloadingscreens/default/ \;
 	cd $HOME/RetroPie/videoloadingscreens/default/
-    sudo rm -R "!(*.mp4)"
+    sudo rm -R !(*.mp4)
 	cd $HOME	
 	if [ ! -d $HOME/RetroPie/videoloadingscreens/supmremmteam ]; then
 	mkdir $HOME/RetroPie/videoloadingscreens/supmremmteam
@@ -233,7 +236,8 @@ function ultra_fixes() {
     sleep 1
     rm -rf ~/.supreme_fixes/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
-    sleep 2
+    sleep 1
+	clear
 }
 
 function ultra_attract() {
