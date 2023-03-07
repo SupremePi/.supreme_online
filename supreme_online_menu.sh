@@ -202,7 +202,7 @@ function ultra_fixes() {
 	
 	#Pi 3 changes if needed
 	if [ "$rpi" = "3" ]; then
-	sudo mv $HOME/supreme_fixes/pi-3/boot/* $HOME/supreme_fixes/boot/
+	sudo mv $HOME/.supreme_fixes/pi-3/boot/* $HOME/.supreme_fixes/boot/
     fi
 	
     #Sync All New Files		
