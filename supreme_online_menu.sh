@@ -195,10 +195,17 @@ function ultra_fixes() {
 	echo -e "$(tput setaf 2)Now Downloading All Supreme Ultra Fixes! $(tput sgr0)"
 	sleep 3
 	
-	#Sync All New Files	
+	#Download Fixes
 	cd $HOME/
     git clone https://github.com/SupremePi/.supreme_fixes.git
     cd .supreme_fixes/
+	
+	#Pi 3 changes if needed
+	if [ "$rpi" = "3" ]; then
+	sudo mv $HOME/supreme_fixes/pi-3/boot/* $HOME/supreme_fixes/boot/
+    fi
+	
+    #Sync All New Files		
     rsync -urv --exclude '.git' --exclude 'boot' --exclude 'opt' --exclude 'home' --exclude 'etc' --exclude 'var' --exclude 'usr' --exclude 'libretrocores' --exclude 'emulators' --exclude 'supplementary' --exclude 'LICENSE' --exclude 'README.md' --exclude 'roms' . /
 	sudo rsync -urv boot/ /boot/
     sudo rsync -urv etc/ /etc/
