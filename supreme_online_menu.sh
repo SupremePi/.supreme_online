@@ -181,6 +181,10 @@ function ultra_update() {
 	find -name "*.sh" ! -name "joystick_selection.sh" -print0 | xargs -0 chmod 755
 	find -name "*.py" -print0 | xargs -0 chmod 755
 	find -name "*.rp" ! -name "raspiconfig.rp" ! -name "rpsetup.rp" | xargs sudo chown root:root
+	if [ ! -f /opt/retropie/supplementary/joystick-selection/joystick_selection.sh ]; then 
+    sudo /opt/retropie/supplementary/joystick-selection/joystick_selection.sh
+	sudo rm $rp_menu/joystick_selection.sh
+    fi
 	rm $HOME/.supreme_toolkit/sb_toolkit/retropiemenu/controllertools/joystick_selection.sh
 	ln -s /opt/retropie/supplementary/joystick-selection/joystick_selection.sh .supreme_toolkit/sb_toolkit/retropiemenu/controllertools/joystick_selection.sh
     echo -e "$(tput setaf 2)Done! $(tput sgr0)"
@@ -244,46 +248,6 @@ function ultra_fixes() {
     sleep 3
 	clear
 }
-
-function ultra_attract() {
-	clear
-	echo -e "$(tput setaf 2)Now Restoring Supreme Atrract-Mode! $(tput sgr0)"
-	#Sync All New Files	
-	cd $HOME/
-    git clone https://github.com/SupremePi/.supreme_attract.git
-    cd .supreme_attract/
-    sudo rsync -urv ambootcheck/ /opt/retropie/configs/all/attractmode/ambootcheck/
-	sudo rsync -urv emulators/ /opt/retropie/configs/all/attractmode/emulators/
-	sudo rsync -urv intro/ /opt/retropie/configs/all/attractmode/intro/
-	sudo rsync -urv layouts/ /opt/retropie/configs/all/attractmode/layouts/
-	sudo rsync -urv mame-config/ /opt/retropie/configs/all/attractmode/mame-config/
-	sudo rsync -urv menu-art/ /opt/retropie/configs/all/attractmode/menu-art/
-	sudo rsync -urv modules/ /opt/retropie/configs/all/attractmode/modules/
-	sudo rsync -urv plugins/ /opt/retropie/configs/all/attractmode/plugins/
-	sudo rsync -urv romlists/ /opt/retropie/configs/all/attractmode/romlists/
-	sudo rsync -urv scraper/ /opt/retropie/configs/all/attractmode/scraper/
-	sudo rsync -urv screensaver/ /opt/retropie/configs/all/attractmode/screensaver/
-	sudo rsync -urv scripts/ /opt/retropie/configs/all/attractmode/scripts/
-	sudo rsync -urv sounds/ /opt/retropie/configs/all/attractmode/sounds/
-	sudo rsync -urv stats/ /opt/retropie/configs/all/attractmode/stats/
-	
-	if [ -f /opt/retropie/configs/all/attractmode/attract.am ]; then 
-	sudo mv /opt/retropie/configs/all/attractmode/attract.am /opt/retropie/configs/all/attractmode/attract.am.bk
-    fi
-    if [ -f /opt/retropie/configs/all/attractmode/attract.cfg ]; then 
-	sudo mv /opt/retropie/configs/all/attractmode/attract.cfg /opt/retropie/configs/all/attractmode/attract.cfg.bk
-    fi
-
-	sudo rsync -urv attract.am /opt/retropie/configs/all/attractmode/
-	sudo rsync -urv attract.cfg /opt/retropie/configs/all/attractmode/
-    sudo chmod +x -R /opt/retropie/configs/all/attractmode/*
-    sudo chown pi:pi -R /opt/retropie/configs/all/attractmode/*
-	sleep 1
-    rm -rf ~/.supreme_attract/
-	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
-    sleep 2
-}
-
 
 function ultra_attract() {
 	clear
