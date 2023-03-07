@@ -226,7 +226,12 @@ function ultra_fixes() {
 	if [ ! -f $HOME/RetroPie/videoloadingscreens/supremeteam/default.mp4 ]; then
 	mv $HOME/RetroPie/videoloadingscreens/default/* $HOME/RetroPie/videoloadingscreens/supremeteam/
 	fi
-	fi 
+	fi
+	
+    #Simple Attract Mode Edit for pi 3
+    if [ "$rpi" = "3" ]; then
+	sudo perl -p -i -e 's/supreme-marquee-tool;Supreme Marquee Tool;Visual tools;;;;;;;;;;;;;;/#supreme-marquee-tool;Supreme Marquee Tool;Visual tools;;;;;;;;;;;;;;/g' /opt/retropie/configs/all/attractmode/romlists/Visual\ tools.txt
+    fi		
 	
 	#Quick User or Permission fix
     sudo chmod +x /etc/profile.d/10-retropie* &> /dev/null
