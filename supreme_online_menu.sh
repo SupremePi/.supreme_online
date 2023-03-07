@@ -92,9 +92,9 @@ function ultra_restore() {
     echo -e "$(tput setaf 2)Now Restoring Supreme Retropie Menus From Tool-Kit! $(tput sgr0)"
     sleep 3
 	
-	#Pi 3 RetroPie Menu Edits 
+    #Pi 3 RetroPie Menu Edits 
     if [ "$rpi" = "3" ]; then
-	sudo cp $sb_menu_pi3/retropietools/overclock.sh $sb_menu/retropietools/overclock.sh 
+    sudo cp $sb_menu_pi3/retropietools/overclock.sh $sb_menu/retropietools/overclock.sh	
 	if [ -f $sb_menu/visualtools/supreme-marquee-tool.sh ]; then 
 	sudo rm $sb_menu/visualtools/supreme-marquee-tool.sh
 	fi
