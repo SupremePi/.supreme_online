@@ -91,10 +91,15 @@ function ultra_restore() {
     fi
     echo -e "$(tput setaf 2)Now Restoring Supreme Retropie Menus From Tool-Kit! $(tput sgr0)"
     sleep 3
+	
 	#Pi 3 RetroPie Menu Edits 
     if [ "$rpi" = "3" ]; then
+	sudo cp $sb_menu_pi3/retropietools/overclock.sh $sb_menu/retropietools/overclock.sh 
+	if [ -f $sb_menu/visualtools/supreme-marquee-tool.sh ]; then 
 	sudo rm $sb_menu/visualtools/supreme-marquee-tool.sh
-    fi	
+	fi
+    fi
+	
 	#Rsync RetroPie Menu files
     if [ -f $rp_menu/raspiconfig.rp ]; then 
 	sudo rsync -av $rp_menu/raspiconfig.rp $sb_menu/
@@ -202,7 +207,7 @@ function ultra_fixes() {
 	
 	#Pi 3 changes if needed
 	if [ "$rpi" = "3" ]; then
-	sudo mv $HOME/.supreme_fixes/pi-3/boot/* $HOME/.supreme_fixes/boot/
+	sudo cp $HOME/.supreme_fixes/pi-3/boot/* $HOME/.supreme_fixes/boot/
     fi
 	
     #Sync All New Files		
