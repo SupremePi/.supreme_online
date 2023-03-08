@@ -199,7 +199,7 @@ function ultra_fixes() {
 	clear
 	echo -e "$(tput setaf 2)Now Downloading All Supreme Ultra Fixes! $(tput sgr0)"
 	sleep 3
-	
+		
 	#Download Fixes
 	cd $HOME/
     git clone https://github.com/SupremePi/.supreme_fixes.git
@@ -311,11 +311,13 @@ function ultra_installers() {
             - "" \
 	        1 " -  INSTALL TAMO PLUS (By ALLRiPPED & Supreme RetroPie)" \
 			2 " -  INSTALL DEVILS-BOX (By The Retro-Devils)" \
+			3 " -  INSTALL Supreme Sinden V2 (Clean Install)" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) installer_tamoplus  ;;
             2) installer_devilsbox  ;;
+			3) installer_sinden  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -331,6 +333,15 @@ installer_devilsbox() {
 curl -sSL bit.ly/Install-Devils-Box | bash
 }
 
+installer_sinden() {
+if [ -d /home/pi/Lightgun ]; then
+    if (dialog --title "REMOVE!" --yesno "You need to remove the old version of sinden you ok with this?" 0 0 )
+    then
+    sudo rm -R /home/pi/Lightgun
+    fi
+    fi
+	curl -sSL https://github.com/SupremePi/supreme-sinden-v2/blob/main/install-lightgun-quick.sh | bash
+}
 
 function supreme_off() {
 	dialog --infobox "...Shutting Down..." 3 23 ; sleep 1
