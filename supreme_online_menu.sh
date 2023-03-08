@@ -341,6 +341,7 @@ if [ -d /home/pi/Lightgun ]; then
     fi
     fi
 	curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden-v2/main/install-lightgun-quick.sh | bash
+	clear
 }
 
 function supreme_off() {
