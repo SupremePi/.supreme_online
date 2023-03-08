@@ -330,7 +330,12 @@ curl -sSL https://bit.ly/Install-TAMO | bash
 }
 
 installer_devilsbox() {
-curl -sSL bit.ly/Install-Devils-Box | bash
+    if (dialog --title "AGREE?" --yesno "Please note us at supreme have not part in this downloader and that you use it at your own risk!!! We dont condone the download of media we dont own!" 0 0 )
+    then
+    curl -sSL bit.ly/Install-Devils-Box | bash
+	else
+	clear
+    fi
 }
 
 installer_sinden() {
