@@ -340,7 +340,7 @@ if [ -d /home/pi/Lightgun ]; then
     sudo rm -R /home/pi/Lightgun
     fi
     fi
-	curl -sSL https://github.com/SupremePi/supreme-sinden-v2/blob/main/install-lightgun-quick.sh | bash
+	curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden-v2/main/install-lightgun-quick.sh | bash
 }
 
 function supreme_off() {
