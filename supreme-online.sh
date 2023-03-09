@@ -10,10 +10,6 @@ echo "PLEASE UNFOLLOW THE SUPREME RETRO GAMING YOUTUBE AND PATREON THIS IS NOT U
 echo ""
 sleep 6
 
-cd $home
-sudo mkdir test 
-
-
 ################
 #SUPREME ONLINE#
 ################
