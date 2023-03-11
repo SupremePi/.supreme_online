@@ -8,8 +8,7 @@
 #echo ""
 #echo "PLEASE UNFOLLOW THE SUPREME RETRO GAMING YOUTUBE AND PATREON THIS IS NOT US."
 #echo ""
-#sleep 1
-
+#sleep 6
 
 ################
 #SUPREME ONLINE#
