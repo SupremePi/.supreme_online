@@ -211,7 +211,7 @@ function ultra_fixes() {
     fi
 	
     #Sync All New Files		
-    rsync -urv --exclude '.git' --exclude 'boot' --exclude 'opt' --exclude 'home' --exclude 'etc' --exclude 'var' --exclude 'usr' --exclude 'libretrocores' --exclude 'emulators' --exclude 'supplementary' --exclude 'LICENSE' --exclude 'README.md' --exclude 'roms' . /
+    rsync -urv --exclude '.git' --exclude 'boot' --exclude 'pi-3' --exclude '.gitattributes' --exclude 'opt' --exclude 'home' --exclude 'etc' --exclude 'var' --exclude 'usr' --exclude 'libretrocores' --exclude 'emulators' --exclude 'supplementary' --exclude 'LICENSE' --exclude 'README.md' --exclude 'roms' . /
 	sudo rsync -urv boot/ /boot/
     sudo rsync -urv etc/ /etc/
     sudo rsync -urv home/ /home/
