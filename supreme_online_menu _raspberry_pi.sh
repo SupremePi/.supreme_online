@@ -2,7 +2,7 @@
 # SUPREME ULTRA
 # The Supreme Team https://github.com/SupremePi/
 
-sb_version="Supreme Online Raspbeery Pi"
+sb_version="Supreme Online Raspberry Pi"
 sb_toolkit=/home/pi/.supreme_toolkit/sb_toolkit
 rp_menu=/home/pi/RetroPie/retropiemenu
 sb_menu=$sb_toolkit/retropiemenu
