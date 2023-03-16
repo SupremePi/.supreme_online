@@ -310,16 +310,16 @@ function ultra_installers() {
             - "*** AVAILABLE INSTALLERS ***" \
             - "" \
 	        1 " -  INSTALL TAMO PLUS (By ALLRiPPED & Supreme RetroPie)" \
-			2 " -  INSTALL DEVILS-BOX (By The Retro-Devils)" \
-			3 " -  INSTALL Supreme Sinden V2 (Clean Install)" \
-			4 " -  INSTALL Bios Pack (By Retro Devils)" \			
+	        2 " -  INSTALL DEVILS-BOX (By The Retro-Devils)" \
+	        3 " -  INSTALL Supreme Sinden V2 (Clean Install)" \
+	        4 " -  INSTALL Bios Pack (By Retro Devils)" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) installer_tamoplus  ;;
             2) installer_devilsbox  ;;
-			3) installer_sinden  ;;
-			4) installer_bios  ;;			
+	    3) installer_sinden  ;;
+	    4) installer_bios  ;;		
             -) none ;;
             *)  break ;;
         esac
@@ -352,7 +352,6 @@ if [ -d /home/pi/Lightgun ]; then
 }
 
 installer_bios() {
-
 HOSTB="https://archive.org/download/devils-bios"
 
 clear
