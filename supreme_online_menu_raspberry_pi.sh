@@ -312,12 +312,14 @@ function ultra_installers() {
 	        1 " -  INSTALL TAMO PLUS (By ALLRiPPED & Supreme RetroPie)" \
 			2 " -  INSTALL DEVILS-BOX (By The Retro-Devils)" \
 			3 " -  INSTALL Supreme Sinden V2 (Clean Install)" \
+			4 " -  INSTALL Bios Pack (By Retro Devils)" \			
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) installer_tamoplus  ;;
             2) installer_devilsbox  ;;
 			3) installer_sinden  ;;
+			4) installer_bios  ;;			
             -) none ;;
             *)  break ;;
         esac
@@ -347,6 +349,15 @@ if [ -d /home/pi/Lightgun ]; then
     fi
 	curl -sSL https://raw.githubusercontent.com/SupremePi/supreme-sinden-v2/main/install-lightgun-quick.sh | bash
 	clear
+}
+
+installer_bios() {
+
+HOSTB="https://archive.org/download/devils-bios"
+
+clear
+wget -m -r -np -nH -nd -R "index.html" "${HOSTB}"/BIOS/ -P "$HOME"/RetroPie/BIOS/ -erobots=off
+rm -f "$HOME"/RetroPie/BIOS/index.html.tmp
 }
 
 function supreme_off() {
