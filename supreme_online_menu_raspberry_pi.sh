@@ -254,6 +254,7 @@ function ultra_fixes() {
     sudo chmod +x /etc/samba/smb.conf* &> /dev/null
 	sudo chown pi:pi -R /opt/retropie/configs/
 	sudo chown pi:pi -R /home/pi/
+	sudo chmod +x /usr/bin/supreme*
     sleep 2
     rm -rf ~/.supreme_fixes/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
