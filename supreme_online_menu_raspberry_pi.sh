@@ -314,6 +314,7 @@ function ultra_installers() {
 	        2 " -  INSTALL DEVILS-BOX (By The Retro-Devils)" \
 	        3 " -  INSTALL Supreme Sinden V2 (Clean Install)" \
 	        4 " -  INSTALL Bios Pack (By Retro Devils)" \
+	        5 " -  INSTALL D00M Utilities (By RapidEdwin)" \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -321,6 +322,7 @@ function ultra_installers() {
             2) installer_devilsbox  ;;
 	    3) installer_sinden  ;;
 	    4) installer_bios  ;;		
+	    5) installer_doomutils  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -358,6 +360,11 @@ HOSTB="https://archive.org/download/devils-bios"
 clear
 wget -m -r -np -nH -nd -R "index.html" "${HOSTB}"/BIOS/ -P "$HOME"/RetroPie/BIOS/ -erobots=off
 rm -f "$HOME"/RetroPie/BIOS/index.html.tmp
+}
+
+installer_doomutils() {
+curl -sSL https://raw.githubusercontent.com/RapidEdwin08/doom-utils/main/doom-utils.sh  | bash
+clear
 }
 
 function supreme_off() {
