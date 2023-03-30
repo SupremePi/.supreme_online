@@ -97,7 +97,7 @@ infobox="${infobox}\n"
 infobox="${infobox}If you do not see your name on the list then your one of the awesome community developers\n"
 infobox="${infobox}that made this build possible, so thank you as there is just so manny to list.\n"
 infobox="${infobox}\n"
-infobox="${infobox}**If you want your name on the listed as you been apart of the build please dont be shy to ask.**\n"
+infobox="${infobox}**If you want your name on the list as you been apart of the builds please dont be shy to ask.**\n"
 
 
 dialog --backtitle "SUPREME CREDITS" \
