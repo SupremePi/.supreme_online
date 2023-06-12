@@ -315,6 +315,7 @@ function ultra_installers() {
 	        3 " -  INSTALL Supreme Sinden V2 (Clean Install)" \
 	        4 " -  INSTALL Bios Pack (By Retro Devils)" \
 	        5 " -  INSTALL D00M Utilities (By RapidEdwin)" \
+	        6 " -  INSTALL lr-atari800 Tweaks (By RapidEdwin)" \			
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -323,6 +324,7 @@ function ultra_installers() {
 	    3) installer_sinden  ;;
 	    4) installer_bios  ;;		
 	    5) installer_doomutils  ;;
+	    6) installer_atari800  ;;		
             -) none ;;
             *)  break ;;
         esac
@@ -364,6 +366,11 @@ rm -f "$HOME"/RetroPie/BIOS/index.html.tmp
 
 installer_doomutils() {
 curl -sSL https://raw.githubusercontent.com/RapidEdwin08/doom-utils/main/doom-utils.sh  | bash
+clear
+}
+
+installer_atari800() {
+curl -sSL https://raw.githubusercontent.com/RapidEdwin08/lr-atari800-tweaks/main/lr-atari800-tweaks.sh  | bash
 clear
 }
 
