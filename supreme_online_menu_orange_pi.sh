@@ -81,13 +81,13 @@ function supreme_restart() {
 function supreme_credits() {
 infobox=""
 infobox="${infobox}Big thanks to the following:\\n"
-infobox="${infobox}Retropie team, Attract team and pegasus team for the foundation of the pi 4 builds\n"
+infobox="${infobox}Retropie team, Attract team and pegasus team for the foundation of the Supreme builds\n"
 infobox="${infobox}\n"
 infobox="${infobox}Youtubers:\n"
 infobox="${infobox}leepspvideo, Level1online, therexershow, kio diekin, Drew talks & more\n"
 infobox="${infobox}\n"
 infobox="${infobox}Developers/helpers & Media cretaion:\n"
-infobox="${infobox}Rapid Edwin, Daniele Dan, David Marti, Carl Hagstrum, Dwayne Hurst, Eazy Hax, 2Play, RPC80, DerSchlachter, PI Wizard, Bezelproject, HP2 team & Pademonium Cinematics, Retro Devils\n"
+infobox="${infobox}Rearmit Dev, Rapid Edwin, Daniele Dan, David Marti, Carl Hagstrum, Dwayne Hurst, Eazy Hax, 2Play, RPC80, DerSchlachter, PI Wizard, Bezelproject, HP2 team & Pademonium Cinematics, Retro Devils\n"
 infobox="${infobox}\n"
 infobox="${infobox}Testers:\n"
 infobox="${infobox}Andy,Ben,Britton,kio diekin,Damso,Dan,Korri,chris,Adam.Will,Chase & more\n"
@@ -97,7 +97,7 @@ infobox="${infobox}\n"
 infobox="${infobox}If you do not see your name on the list then your one of the awesome community developers\n"
 infobox="${infobox}that made this build possible, so thank you as there is just so manny to list.\n"
 infobox="${infobox}\n"
-infobox="${infobox}**If you want your name on the listed as you been apart of the build please dont be shy to ask.**\n"
+infobox="${infobox}**If you want your name on the list as you been apart of the builds please dont be shy to ask.**\n"
 
 
 dialog --backtitle "SUPREME CREDITS" \
