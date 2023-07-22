@@ -315,7 +315,8 @@ function ultra_installers() {
 	        3 " -  INSTALL Supreme Sinden V2 (Clean Install)" \
 	        4 " -  INSTALL Bios Pack (By Retro Devils)" \
 	        5 " -  INSTALL D00M Utilities (By RapidEdwin)" \
-	        6 " -  INSTALL lr-atari800 Tweaks (By RapidEdwin)" \			
+	        6 " -  INSTALL lr-atari800 Tweaks (By RapidEdwin)" \
+	        7 " -  INSTALL XBOX CLOUD GAMING (By Supreme Team)" \			
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -324,7 +325,8 @@ function ultra_installers() {
 	    3) installer_sinden  ;;
 	    4) installer_bios  ;;		
 	    5) installer_doomutils  ;;
-	    6) installer_atari800  ;;		
+	    6) installer_atari800  ;;
+	    7) installer_xbox_cloud_gaming  ;;		
             -) none ;;
             *)  break ;;
         esac
@@ -373,6 +375,43 @@ installer_atari800() {
 curl -sSL https://raw.githubusercontent.com/RapidEdwin08/lr-atari800-tweaks/main/lr-atari800-tweaks.sh  | bash
 clear
 }
+
+installer_xbox_cloud_gaming() {
+	echo -e "$(tput setaf 2)Now Adding Xbox Cloud Gaming To Ports Menu $(tput sgr0)"
+	echo
+	sleep 3
+	
+#Adds xbox cloud gaming shortcut to ports
+cat <<\EOF01 > "/home/pi/RetroPie/roms/ports/Xbox Cloud Gaming.sh"
+#!/bin/bash
+"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "xbox-cloud-gaming" ""
+EOF01
+sudo chmod +x /home/pi/RetroPie/roms/ports/Xbox\ Cloud\ Gaming.sh
+
+mkdir /opt/retropie/configs/ports/xbox-cloud-gaming 2> /dev/null
+cat <<\EOF02 > "/opt/retropie/configs/ports/xbox-cloud-gaming/emulators.cfg"
+xbox-cloud-gaming = "XINIT: /opt/retropie/supplementary/xbox-cloud-gaming/xbox-cloud-gaming.sh"
+default = "xbox-cloud-gaming"
+EOF02
+sudo chmod +x /opt/retropie/configs/ports/xbox-cloud-gaming/emulators.cfg
+
+sudo mkdir /opt/retropie/supplementary/xbox-cloud-gaming 2> /dev/null
+sudo bash -c 'cat > /opt/retropie/supplementary/xbox-cloud-gaming/xbox-cloud-gaming.sh' << EOF
+#!/bin/bash
+xset -dpms s off s noblank
+matchbox-window-manager -use_titlebar no &
+unclutter &
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/'Local State'
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/; s/"exit_type":"[^"]\+"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
+chromium-browser --disable-infobars --enable-features=OverlayScrollbar --kiosk 'https://xbox.com/play'
+EOF
+sudo chmod +x /opt/retropie/supplementary/xbox-cloud-gaming/xbox-cloud-gaming.sh
+    
+	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To exit Xbox Cloud Gaming Press ALT & f4 $(tput sgr0)"
+	echo
+	sleep 5
+clear
+}	
 
 function supreme_off() {
 	dialog --infobox "...Shutting Down..." 3 23 ; sleep 1
