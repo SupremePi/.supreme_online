@@ -378,7 +378,7 @@ clear
 }
 
 installer_xbox_cloud_gaming() {
-if [ -f /opt/retropie/supplementary/chromium/chromium.sh ]; then
+if [ -f /opt/retropie/ports/chromium/chromium.sh ]; then
 	echo -e "$(tput setaf 2)Now Adding Xbox Cloud Gaming To Ports Menu $(tput sgr0)"
 	echo
 	sleep 3	
@@ -421,7 +421,7 @@ fi
 }
 
 installer_luna_cloud_gaming() {
-if [ -f /opt/retropie/supplementary/chromium/chromium.sh ]; then
+if [ -f /opt/retropie/ports/chromium/chromium.sh ]; then
 	echo -e "$(tput setaf 2)Now Adding Luna Cloud Gaming To Ports Menu $(tput sgr0)"
 	echo
 	sleep 3	
