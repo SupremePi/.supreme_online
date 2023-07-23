@@ -37,17 +37,20 @@ function main_menu() {
             - "" \
 	        1 " -  CHECK FOR UPDATES" \
 	        - "" \
-            2 " -  POWER OFF PI" \
-            3 " -  RESTART PI" \
+	        2 " -  CHECK FOR UPDATES" \
+	        - "" \			
+            3 " -  POWER OFF PI" \
+            4 " -  RESTART PI" \
 	        - "" \
-			4 " -  SUPREME CREDITS" \
+			5 " -  SUPREME CREDITS" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) supreme_updates  ;;
-	        2) supreme_off  ;;
-            3) supreme_restart  ;;
-			4) supreme_credits  ;;
+	        2) orange_pi_installers  ;;
+	        3) supreme_off  ;;			
+            4) supreme_restart  ;;
+			5) supreme_credits  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -77,6 +80,69 @@ function supreme_restart() {
 	clear
 	sudo reboot
 }
+
+function orange_pi_installers() {
+    local choice
+	
+    while true; do
+        choice=$(dialog --backtitle "$BACKTITLE" --title " SUPREME - INSTALLERS " \
+            --ok-label OK --cancel-label Exit \
+            --menu "$sb_version" 25 75 20 \
+            - "*** AVAILABLE INSTALLERS ***" \
+            - "" \
+        1 " -  INSTALL XBOX CLOUD GAMING (By Supreme Team)" \
+        2>&1 > /dev/tty)
+
+        case "$choice" in
+        1) installer_xbox_cloud_gaming  ;;
+        *)  break ;;
+        esac
+    done
+	clear
+}
+
+installer_xbox_cloud_gaming() {
+if [ -f /opt/retropie/supplementary/chromium/chromium.sh ]; then
+	echo -e "$(tput setaf 2)Now Adding Xbox Cloud Gaming To Ports Menu $(tput sgr0)"
+	echo
+	sleep 3	
+#Adds xbox cloud gaming shortcut to ports
+cat <<\EOF01 > "/home/pi/RetroPie/roms/ports/Xbox Cloud Gaming.sh"
+#!/bin/bash
+"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "xbox-cloud-gaming" ""
+EOF01
+sudo chmod +x /home/pi/RetroPie/roms/ports/Xbox\ Cloud\ Gaming.sh
+
+mkdir /opt/retropie/configs/ports/xbox-cloud-gaming 2> /dev/null
+cat <<\EOF02 > "/opt/retropie/configs/ports/xbox-cloud-gaming/emulators.cfg"
+xbox-cloud-gaming = "XINIT: /opt/retropie/supplementary/xbox-cloud-gaming/xbox-cloud-gaming.sh"
+default = "xbox-cloud-gaming"
+EOF02
+sudo chmod +x /opt/retropie/configs/ports/xbox-cloud-gaming/emulators.cfg
+
+sudo mkdir /opt/retropie/supplementary/xbox-cloud-gaming 2> /dev/null
+sudo bash -c 'cat > /opt/retropie/supplementary/xbox-cloud-gaming/xbox-cloud-gaming.sh' << EOF
+#!/bin/bash
+xset -dpms s off s noblank
+matchbox-window-manager -use_titlebar no &
+unclutter &
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/'Local State'
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/; s/"exit_type":"[^"]\+"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
+chromium-browser --disable-infobars --enable-features=OverlayScrollbar --kiosk 'https://xbox.com/play'
+EOF
+sudo chmod +x /opt/retropie/supplementary/xbox-cloud-gaming/xbox-cloud-gaming.sh
+    
+	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To exit Xbox Cloud Gaming Press ALT & f4 $(tput sgr0)"
+	echo
+	sleep 5
+clear
+else
+	echo -e "$(tput setaf 2)Sorry but your missing Chromium Browser$(tput sgr0)"
+	echo
+	sleep 5
+clear
+fi
+}	
 
 function supreme_credits() {
 infobox=""
