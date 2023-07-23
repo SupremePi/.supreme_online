@@ -143,7 +143,7 @@ sudo chmod +x /opt/retropie/supplementary/xbox-cloud-gaming/xbox-cloud-gaming.sh
 	sleep 5
 clear
 else
-	echo -e "$(tput setaf 2)Sorry but your missing Chromium Browser$(tput sgr0)"
+	echo -e "$(tput setaf 2)Sorry but your missing the Chromium Browser$(tput sgr0)"
 	echo
 	sleep 5
 clear
@@ -186,7 +186,7 @@ sudo chmod +x /opt/retropie/supplementary/luna-cloud-gaming/luna-cloud-gaming.sh
 	sleep 5
 clear
 else
-	echo -e "$(tput setaf 2)Sorry but your missing Chromium Browser$(tput sgr0)"
+	echo -e "$(tput setaf 2)Sorry but your missing the Chromium Browser$(tput sgr0)"
 	echo
 	sleep 5
 clear
