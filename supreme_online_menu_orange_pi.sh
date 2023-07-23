@@ -91,10 +91,12 @@ function orange_pi_installers() {
             - "*** AVAILABLE INSTALLERS ***" \
             - "" \
         1 " -  INSTALL XBOX CLOUD GAMING (By Supreme Team)" \
+        2 " -  INSTALL LUNA CLOUD GAMING (By Supreme Team)" \		
         2>&1 > /dev/tty)
 
         case "$choice" in
         1) installer_xbox_cloud_gaming  ;;
+        2) installer_luna_cloud_gaming  ;;		
         *)  break ;;
         esac
     done
@@ -142,7 +144,49 @@ else
 	sleep 5
 clear
 fi
-}	
+}
+installer_luna_cloud_gaming() {
+if [ -f /opt/retropie/supplementary/chromium/chromium.sh ]; then
+	echo -e "$(tput setaf 2)Now Adding Luna Cloud Gaming To Ports Menu $(tput sgr0)"
+	echo
+	sleep 3	
+#Adds luna cloud gaming shortcut to ports
+cat <<\EOF01 > "/home/pi/RetroPie/roms/ports/Luna Cloud Gaming.sh"
+#!/bin/bash
+"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "luna-cloud-gaming" ""
+EOF01
+sudo chmod +x /home/pi/RetroPie/roms/ports/luna\ Cloud\ Gaming.sh
+
+mkdir /opt/retropie/configs/ports/luna-cloud-gaming 2> /dev/null
+cat <<\EOF02 > "/opt/retropie/configs/ports/luna-cloud-gaming/emulators.cfg"
+luna-cloud-gaming = "XINIT: /opt/retropie/supplementary/luna-cloud-gaming/luna-cloud-gaming.sh"
+default = "luna-cloud-gaming"
+EOF02
+sudo chmod +x /opt/retropie/configs/ports/luna-cloud-gaming/emulators.cfg
+
+sudo mkdir /opt/retropie/supplementary/luna-cloud-gaming 2> /dev/null
+sudo bash -c 'cat > /opt/retropie/supplementary/luna-cloud-gaming/luna-cloud-gaming.sh' << EOF
+#!/bin/bash
+xset -dpms s off s noblank
+matchbox-window-manager -use_titlebar no &
+unclutter &
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/'Local State'
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/; s/"exit_type":"[^"]\+"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
+chromium-browser --disable-infobars --enable-features=OverlayScrollbar --kiosk 'https://luna.amazon.com/'
+EOF
+sudo chmod +x /opt/retropie/supplementary/luna-cloud-gaming/luna-cloud-gaming.sh
+    
+	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To exit luna Cloud Gaming Press ALT & f4 $(tput sgr0)"
+	echo
+	sleep 5
+clear
+else
+	echo -e "$(tput setaf 2)Sorry but your missing Chromium Browser$(tput sgr0)"
+	echo
+	sleep 5
+clear
+fi
+}		
 
 function supreme_credits() {
 infobox=""
