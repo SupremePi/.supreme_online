@@ -312,12 +312,12 @@ function ultra_installers() {
             - "" \
 	    1 " -  INSTALL TAMO PLUS (By ALLRiPPED & Supreme RetroPie)" \
 	    2 " -  INSTALL DEVILS-BOX (By The Retro-Devils)" \
-        3 " -  INSTALL Supreme Sinden V2 (Clean Install)" \
+	    3 " -  INSTALL Supreme Sinden V2 (Clean Install)" \
 	    4 " -  INSTALL Bios Pack (By Retro Devils)" \
 	    5 " -  INSTALL D00M Utilities (By RapidEdwin)" \
-        6 " -  INSTALL lr-atari800 Tweaks (By RapidEdwin)" \
-        7 " -  INSTALL XBOX CLOUD GAMING (By Supreme Team)" \
-        8 " -  INSTALL LUNA CLOUD GAMING (By Supreme Team)" \		
+	    6 " -  INSTALL lr-atari800 Tweaks (By RapidEdwin)" \
+	    7 " -  INSTALL XBOX CLOUD GAMING (By Supreme Team)" \
+	    8 " -  INSTALL LUNA CLOUD GAMING (By Supreme Team)" \
         2>&1 > /dev/tty)
 
         case "$choice" in
@@ -334,7 +334,7 @@ function ultra_installers() {
     done
 	clear
 }
-
+	
 installer_tamoplus() {
 curl -sSL https://bit.ly/Install-TAMO | bash
 }
