@@ -22,7 +22,7 @@ infobox="${infobox}We Will Use Descriptive Options For Easy Reference!\n"
 infobox="${infobox}\n"
 infobox="${infobox}SUPREME ULTRA\n" 
              
-dialog --backtitle "SUPREME ONLINE ORAANGE PI" \
+dialog --backtitle "SUPREME ONLINE ORANGE PI" \
 --title "Supreme Online & More!!!" \
 --msgbox "${infobox}" 35 110
 
@@ -35,22 +35,22 @@ function main_menu() {
             --menu "$sb_version" 25 75 20 \
             - "*** AVAILABLE ONLINE SELECTIONS ***" \
             - "" \
-	        1 " -  CHECK FOR UPDATES" \
-	        - "" \
-	        2 " -  CHECK FOR UPDATES" \
-	        - "" \			
+	    1 " -  CHECK FOR UPDATES" \
+	    - "" \
+	    2 " -  ORANGE PI INSTALLERS" \
+                - "" \
             3 " -  POWER OFF PI" \
             4 " -  RESTART PI" \
 	        - "" \
-			5 " -  SUPREME CREDITS" \
+	    5 " -  SUPREME CREDITS" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) supreme_updates  ;;
-	        2) orange_pi_installers  ;;
-	        3) supreme_off  ;;			
+	    2) orange_pi_installers  ;;
+	    3) supreme_off  ;;			
             4) supreme_restart  ;;
-			5) supreme_credits  ;;
+	    5) supreme_credits  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -67,16 +67,16 @@ function supreme_off() {
 	dialog --infobox "...Shutting Down..." 3 23 ; sleep 1
 	clear
 	echo
-	echo "[OK System Will Shutdown now...]"
+	echo "[OK System Will Shutdown Now...]"
 	clear
 	sudo shutdown -P now
 }
 
 function supreme_restart() {
-	dialog --infobox "...Starting..." 3 20 ; sleep 1
+	dialog --infobox "...Restarting Now..." 3 20 ; sleep 1
 	clear
 	echo
-	echo "[OK System Will Restart now...]"
+	echo "[OK System Will Restart Now...]"
 	clear
 	sudo reboot
 }
