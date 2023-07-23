@@ -81,6 +81,7 @@ function supreme_restart() {
 	sudo reboot
 }
 
+
 function orange_pi_installers() {
     local choice
 	
@@ -90,18 +91,21 @@ function orange_pi_installers() {
             --menu "$sb_version" 25 75 20 \
             - "*** AVAILABLE INSTALLERS ***" \
             - "" \
-        1 " -  INSTALL XBOX CLOUD GAMING (By Supreme Team)" \
-        2 " -  INSTALL LUNA CLOUD GAMING (By Supreme Team)" \		
-        2>&1 > /dev/tty)
+	    1 " - INSTALL XBOX CLOUD GAMING (By Supreme Team)" \
+	    2 " - INSTALL LUNA CLOUD GAMING (By Supreme Team)" \
+            2>&1 > /dev/tty)
 
         case "$choice" in
-        1) installer_xbox_cloud_gaming  ;;
-        2) installer_luna_cloud_gaming  ;;		
-        *)  break ;;
+            1) installer_xbox_cloud_gaming  ;;
+	    2) installer_luna_cloud_gaming  ;;
+            -) none ;;
+            *)  break ;;
         esac
     done
 	clear
 }
+
+
 
 installer_xbox_cloud_gaming() {
 if [ -f /opt/retropie/supplementary/chromium/chromium.sh ]; then
