@@ -159,7 +159,7 @@ cat <<\EOF01 > "/home/pi/RetroPie/roms/ports/Luna Cloud Gaming.sh"
 #!/bin/bash
 "/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "luna-cloud-gaming" ""
 EOF01
-sudo chmod +x /home/pi/RetroPie/roms/ports/luna\ Cloud\ Gaming.sh
+sudo chmod +x /home/pi/RetroPie/roms/ports/Luna\ Cloud\ Gaming.sh
 
 mkdir /opt/retropie/configs/ports/luna-cloud-gaming 2> /dev/null
 cat <<\EOF02 > "/opt/retropie/configs/ports/luna-cloud-gaming/emulators.cfg"
