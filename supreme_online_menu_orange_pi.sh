@@ -135,8 +135,6 @@ function orange_pi_installers() {
 	clear
 }
 
-
-
 installer_xbox_cloud_gaming() {
 if [ -f /opt/retropie/supplementary/chromium/chromium.sh ]; then
 	echo -e "$(tput setaf 2)Now Adding Xbox Cloud Gaming To Ports Menu $(tput sgr0)"
@@ -168,7 +166,7 @@ chromium-browser --disable-infobars --enable-features=OverlayScrollbar --kiosk '
 EOF
 sudo chmod +x /opt/retropie/supplementary/xbox-cloud-gaming/xbox-cloud-gaming.sh
     
-	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To exit Xbox Cloud Gaming Press ALT & f4 $(tput sgr0)"
+	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To Exit Xbox Cloud Gaming Press ALT & f4 $(tput sgr0)"
 	echo
 	sleep 5
 clear
@@ -211,7 +209,7 @@ chromium-browser --disable-infobars --enable-features=OverlayScrollbar --kiosk '
 EOF
 sudo chmod +x /opt/retropie/supplementary/luna-cloud-gaming/luna-cloud-gaming.sh
     
-	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To exit luna Cloud Gaming Press ALT & f4 $(tput sgr0)"
+	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To Exit Luna Cloud Gaming Press ALT & f4 $(tput sgr0)"
 	echo
 	sleep 5
 clear
@@ -254,7 +252,7 @@ chromium-browser --disable-infobars --enable-features=OverlayScrollbar --kiosk '
 EOF
 sudo chmod +x /opt/retropie/supplementary/nvidia-cloud-gaming/nvidia-cloud-gaming.sh
 
-	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To exit nvidia Cloud Gaming Press ALT & f4 $(tput sgr0)"
+	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To Exit Nvidia Cloud Gaming Press ALT & f4 $(tput sgr0)"
 	echo
 	sleep 5
 clear
