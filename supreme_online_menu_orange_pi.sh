@@ -251,7 +251,7 @@ sudo chmod +x /home/pi/RetroPie/roms/ports/Antstream\ Cloud\ Gaming.sh
 
 mkdir /opt/retropie/configs/ports/antstream-cloud-gaming 2> /dev/null
 cat <<\EOF02 > "/opt/retropie/configs/ports/antstream-cloud-gaming/emulators.cfg"
-nvidia-cloud-gaming = "XINIT: /opt/retropie/supplementary/antstream-cloud-gaming/antstream-cloud-gaming.sh"
+antstream-cloud-gaming = "XINIT: /opt/retropie/supplementary/antstream-cloud-gaming/antstream-cloud-gaming.sh"
 default = "antstream-cloud-gaming"
 EOF02
 sudo chmod +x /opt/retropie/configs/ports/antstream-cloud-gaming/emulators.cfg
