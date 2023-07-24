@@ -94,14 +94,12 @@ function orange_pi_installers() {
 	    1 " - INSTALL XBOX CLOUD GAMING (By Supreme Team)" \
 	    2 " - INSTALL LUNA CLOUD GAMING (By Supreme Team)" \
      	    3 " - INSTALL NVIDIA CLOUD GAMING (By Supreme Team)" \
-     	    4 " - INSTALL ANTSTREAM CLOUD GAMING (By Supreme Team)" \	  
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) installer_xbox_cloud_gaming  ;;
 	    2) installer_luna_cloud_gaming  ;;
-  	    3) installer_nvidia_cloud_gaming  ;;
-  	    4) installer_antstream_cloud_gaming  ;;       
+  	    3) installer_nvidia_cloud_gaming  ;;     
             -) none ;;
             *)  break ;;
         esac
