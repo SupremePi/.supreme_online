@@ -93,19 +93,19 @@ function orange_pi_installers() {
             - "" \
 	    1 " - INSTALL XBOX CLOUD GAMING (By Supreme Team)" \
 	    2 " - INSTALL LUNA CLOUD GAMING (By Supreme Team)" \
+     	    3 " - INSTALL NVIDIA CLOUD GAMING (By Supreme Team)" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) installer_xbox_cloud_gaming  ;;
 	    2) installer_luna_cloud_gaming  ;;
+  	    3) installer_nvidia_cloud_gaming  ;;   
             -) none ;;
             *)  break ;;
         esac
     done
 	clear
 }
-
-
 
 installer_xbox_cloud_gaming() {
 if [ -f /opt/retropie/supplementary/chromium/chromium.sh ]; then
@@ -191,7 +191,50 @@ else
 	sleep 5
 clear
 fi
-}		
+}
+
+installer_nvidia_cloud_gaming() {
+if [ -f /opt/retropie/supplementary/nvidia/nvidia.sh ]; then
+	echo -e "$(tput setaf 2)Now Adding Nvidia Cloud Gaming To Ports Menu $(tput sgr0)"
+	echo
+	sleep 3	
+#Adds nvidia cloud gaming shortcut to ports
+cat <<\EOF01 > "/home/pi/RetroPie/roms/ports/Nvidia Cloud Gaming.sh"
+#!/bin/bash
+"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "nvidia-cloud-gaming" ""
+EOF01
+sudo chmod +x /home/pi/RetroPie/roms/ports/Nvidia\ Cloud\ Gaming.sh
+
+mkdir /opt/retropie/configs/ports/nvidia-cloud-gaming 2> /dev/null
+cat <<\EOF02 > "/opt/retropie/configs/ports/nvidia-cloud-gaming/emulators.cfg"
+nvidia-cloud-gaming = "XINIT: /opt/retropie/supplementary/nvidia-cloud-gaming/nvidia-cloud-gaming.sh"
+default = "nvidia-cloud-gaming"
+EOF02
+sudo chmod +x /opt/retropie/configs/ports/nvidia-cloud-gaming/emulators.cfg
+
+sudo mkdir /opt/retropie/supplementary/nvidia-cloud-gaming 2> /dev/null
+sudo bash -c 'cat > /opt/retropie/supplementary/nvidia-cloud-gaming/nvidia-cloud-gaming.sh' << EOF
+#!/bin/bash
+xset -dpms s off s noblank
+matchbox-window-manager -use_titlebar no &
+unclutter &
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/'Local State'
+sed -i 's/"exited_cleanly":false/"exited_cleanly":true/; s/"exit_type":"[^"]\+"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
+chromium-browser --disable-infobars --enable-features=OverlayScrollbar --kiosk 'https://play.geforcenow.com/'
+EOF
+sudo chmod +x /opt/retropie/supplementary/nvidia-cloud-gaming/nvidia-cloud-gaming.sh
+    
+	echo -e "$(tput setaf 2)Finished. Please Restart ES To See The changes. INFO: To exit nvidia Cloud Gaming Press ALT & f4 $(tput sgr0)"
+	echo
+	sleep 5
+clear
+else
+	echo -e "$(tput setaf 2)Sorry but your missing the Chromium Browser$(tput sgr0)"
+	echo
+	sleep 5
+clear
+fi
+}
 
 function supreme_credits() {
 infobox=""
