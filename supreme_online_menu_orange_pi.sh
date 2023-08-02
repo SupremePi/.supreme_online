@@ -195,7 +195,7 @@ fi
 }
 
 installer_nvidia_cloud_gaming() {
-if [ -f /opt/retropie/supplementary/nvidia/nvidia.sh ]; then
+if [ -f /opt/retropie/supplementary/chromium/chromium.sh ]; then
 	echo -e "$(tput setaf 2)Now Adding Nvidia Cloud Gaming To Ports Menu $(tput sgr0)"
 	echo
 	sleep 3	
