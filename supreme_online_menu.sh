@@ -2,7 +2,9 @@
 # The Supreme Team https://github.com/SupremePi/
 
 #Open The Correct Online Toolkit Menu
-if grep -q 'Raspberry' /proc/device-tree/model; then
+if grep -q 'Raspberry Pi 5' /proc/device-tree/model; then
+curl -sSL https://raw.githubusercontent.com/SupremePi/.supreme_online/main/supreme_online_menu_raspberry_pi_5.sh | bash
+elif grep -q 'Raspberry' /proc/device-tree/model; then
 curl -sSL https://raw.githubusercontent.com/SupremePi/.supreme_online/main/supreme_online_menu_raspberry_pi.sh | bash
 elif grep -q 'Orange' /proc/device-tree/model; then
 curl -sSL https://raw.githubusercontent.com/SupremePi/.supreme_online/main/supreme_online_menu_orange_pi.sh | bash
