@@ -66,7 +66,7 @@ function main_menu() {
 	        1 " -  ULTRA TOOL-KIT RESTORE (CLEAN INSTALL)" \
 			2 " -  ULTRA TOOL-KIT UPDATE CHECKER" \
             3 " -  CHECK FOR ULTRA FIXES" \
-			4 " -  CHECK FOR UPDATES" \
+			4 " -  CHECK FOR OS UPDATES" \
 			5 " -  SUPREME INSTALLERS" \
 	        - "" \
             6 " -  POWER OFF PI" \
@@ -79,7 +79,7 @@ function main_menu() {
             1) supreme_restore  ;;
             2) supreme_update  ;;
 			3) supreme_fixes  ;;
-			4) supreme_update  ;;
+			4) supreme_update_os  ;;
 			5) supreme_installers  ;;
 	        6) supreme_off  ;;
             7) supreme_restart  ;;
@@ -254,7 +254,7 @@ function supreme_fixes() {
 	clear
 }
 
-function supreme_update() {
+function supreme_update_os() {
        echo "Checking for updates..." 
        sleep 2 
        sudo apt update -y
