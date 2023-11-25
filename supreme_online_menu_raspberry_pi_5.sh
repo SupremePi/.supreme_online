@@ -208,46 +208,25 @@ function supreme_fixes() {
 	#Download Fixes
 	cd $HOME/
     git clone https://github.com/SupremePi/.supreme_fixes.git
-    cd .supreme_fixes/
+	cd $HOME/.supreme_fixes/pi-5/
 
-	#Pi 5 changes if needed	
-	if [ "$rpi" = "5" ]; then
-	cd .supreme_fixes/pi-5
-    fi
-	
-	#Pi 3 changes if needed
-	if [ "$rpi" = "3" ]; then
-	sudo cp $HOME/.supreme_fixes/pi-3/boot/* $HOME/.supreme_fixes/boot/
-    fi
-	
     #Sync All New Files		
-    rsync -urv --exclude '.git' --exclude 'boot' --exclude 'pi-3' --exclude '.gitattributes' --exclude 'opt' --exclude 'home' --exclude 'etc' --exclude 'var' --exclude 'usr' --exclude 'libretrocores' --exclude 'emulators' --exclude 'supplementary' --exclude 'LICENSE' --exclude 'README.md' --exclude 'roms' . /
+    rsync -urv --exclude '.git' --exclude 'boot' --exclude 'pi-3' --exclude 'pi-5' --exclude '.gitattributes' --exclude 'opt' --exclude 'home' --exclude 'etc' --exclude 'var' --exclude 'usr' --exclude 'libretrocores' --exclude 'emulators' --exclude 'supplementary' --exclude 'LICENSE' --exclude 'README.md' --exclude 'roms' . /
 	sudo rsync -urv boot/ /boot/
-    sudo rsync -urv etc/ /etc/
-    sudo rsync -urv home/ /home/
-	sudo rsync -urv opt/ /opt/
-    sudo rsync -urv usr/ /usr/
-	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
-	sleep 3
-	cd $HOME/
-	clear
-	
-	echo -e "$(tput setaf 2)Now Adding Ultra Fixes! Please Wait... $(tput sgr0)"
-	#Supreme fixes
-    sudo chown pi:pi -R $HOME/RetroPie/videoloadingscreens/
-	sudo chmod 755 -R $HOME/RetroPie/videoloadingscreens/	
-	
-	#Just incase user made changes
-	if [ ! -d $HOME/RetroPie/videoloadingscreens/default ]; then
-    mkdir $HOME/RetroPie/videoloadingscreens/default
+	if [ -d $HOME/.supreme_fixes/etc/* ]; then
+	sudo rsync -urv etc/ /etc/
 	fi
-	
-	#Quick User or Permission fix
-    sudo chmod +x /etc/profile.d/10-retropie* &> /dev/null
-    sudo chmod +x /etc/samba/smb.conf* &> /dev/null
-	sudo chown pi:pi -R /opt/retropie/configs/
-	sudo chown pi:pi -R /home/pi/
+	if [ -d $HOME/.supreme_fixes/home/* ]; then
+	sudo rsync -urv home/ /home/
+	fi
+	if [ -d $HOME/.supreme_fixes/opt/* ]; then
+	sudo rsync -urv opt/ /opt/
+	fi
+    if [ -d $HOME/.supreme_fixes/usr/* ]; then
+	sudo rsync -urv usr/ /usr/
+	fi
     sleep 2
+	cd $HOME/
     rm -rf ~/.supreme_fixes/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
     sleep 3
