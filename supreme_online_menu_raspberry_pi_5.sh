@@ -213,16 +213,16 @@ function supreme_fixes() {
     #Sync All New Files		
     rsync -urv --exclude '.git' --exclude 'boot' --exclude 'pi-3' --exclude 'pi-5' --exclude '.gitattributes' --exclude 'opt' --exclude 'home' --exclude 'etc' --exclude 'var' --exclude 'usr' --exclude 'libretrocores' --exclude 'emulators' --exclude 'supplementary' --exclude 'LICENSE' --exclude 'README.md' --exclude 'roms' . /
 	sudo rsync -urv boot/ /boot/
-	if [ -d $HOME/.supreme_fixes/etc/* ]; then
+	if [ -d $HOME/.supreme_fixes/etc ]; then
 	sudo rsync -urv etc/ /etc/
 	fi
-	if [ -d $HOME/.supreme_fixes/home/* ]; then
+	if [ -d $HOME/.supreme_fixes/home ]; then
 	sudo rsync -urv home/ /home/
 	fi
-	if [ -d $HOME/.supreme_fixes/opt/* ]; then
+	if [ -d $HOME/.supreme_fixes/opt ]; then
 	sudo rsync -urv opt/ /opt/
 	fi
-    if [ -d $HOME/.supreme_fixes/usr/* ]; then
+    if [ -d $HOME/.supreme_fixes/usr ]; then
 	sudo rsync -urv usr/ /usr/
 	fi
     sleep 2
