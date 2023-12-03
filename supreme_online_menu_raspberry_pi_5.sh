@@ -113,8 +113,11 @@ function supreme_restore() {
     sudo rm -R /home/pi/.supreme_toolkit.bk
     fi
     fi
-    echo -e "$(tput setaf 2)Now Restoring Supreme Retropie Menus From Tool-Kit! $(tput sgr0)"
+
+	dialog --infobox "...Fixing..." 3 17 ; sleep 3
+    echo "FIRST LETS RSYNC YOUR RETROPIE MENU FILES TO THE SPREME MENUS."
     sleep 3
+	clear
 	
 	#Rsync RetroPie Menu files
     if [ -f $rp_menu/raspiconfig.rp ]; then 
@@ -156,13 +159,17 @@ function supreme_restore() {
     if [ -f $rp_menu/wifi.rp ]; then 
 	sudo rsync -av $rp_menu/wifi.rp $sb_menu_pi5/
     fi
-	
+	if [ -f /opt/retropie/supplementary/joystick-selection/joystick_selection.sh ]; then 
+	rm $sb_menu_pi5/extra-scripts/joystick_selection.sh
+	ln -s /opt/retropie/supplementary/joystick-selection/joystick_selection.sh $sb_menu_pi5/extra-scripts/joystick_selection.sh
+	fi
+	   	
     #Rsync Custom Menu files
     if [ -f $rp_menu/bezelproject.sh ]; then 
-    sudo rsync -av $rp_menu/bezelproject.sh $sb_menu_pi5/
+    sudo rsync -av $rp_menu/bezelproject.sh $sb_menu_pi5/extra-scripts/
     fi
     if [ -f $rp_menu/hurstythemes.sh ]; then 
-    sudo rsync -av $rp_menu/hurstythemes.sh $sb_menu_pi5/
+    sudo rsync -av $rp_menu/hurstythemes.sh $sb_menu_pi5/extra-scripts/
     fi
     if [ -d $rp_menu/imp ]; then 
     sudo rsync -av $rp_menu/imp $sb_menu_pi5/imp
@@ -171,10 +178,10 @@ function supreme_restore() {
     #Cool Down
     sleep 1
     clear
-    echo "Now Fixing Supreme Menu."
+    echo "NOW UPDATING/REPAIRING YOUR RETROPIE SUPREME MENUS."
     sleep 3
     clear
-    rm -rf $rp_menu/* && rsync -av $sb_menu_pi5/ $rp_menu && cp $sb_toolkit/retropie-gml-pi5/gamelist.xml /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+    rm -rf $rp_menu/* && sleep 1 && rsync -av $sb_menu_pi5/ $rp_menu && cp $sb_toolkit/retropie-gml-pi5/gamelist.xml /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
     sudo chown -R pi:pi $sb_menu_pi5/
 	sudo chmod 755 -R $sb_menu_pi5/
 	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
@@ -198,8 +205,13 @@ function supreme_update() {
 	echo
 	find -name "*.sh" ! -name "joystick_selection.sh" -print0 | xargs -0 chmod 755
 	find -name "*.py" -print0 | xargs -0 chmod 755
-	find -name "*.rp" ! -name "raspiconfig.rp" ! -name "rpsetup.rp" | xargs sudo chown root:root
-    echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+	find -name "*.rp" ! -name "raspiconfig.rp" ! -name "rpsetup.rp" | xargs sudo chown root:root    
+	if [ -f /opt/retropie/supplementary/joystick-selection/joystick_selection.sh ]; then 
+	rm $sb_menu_pi5/extra-scripts/joystick_selection.sh
+	ln -s /opt/retropie/supplementary/joystick-selection/joystick_selection.sh $sb_menu_pi5/extra-scripts/joystick_selection.sh
+	fi
+	echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+	sleep 3
 }
 
 function supreme_fixes() {
