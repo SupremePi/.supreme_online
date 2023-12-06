@@ -172,7 +172,7 @@ function supreme_restore() {
     sudo rsync -av $rp_menu/hurstythemes.sh $sb_menu_pi5/extra-scripts/
     fi
     if [ -d $rp_menu/imp ]; then 
-    sudo rsync -av $rp_menu/imp $sb_menu_pi5/imp
+    sudo rsync -av $rp_menu/imp/ $sb_menu_pi5/imp/
     fi
 	
     #Cool Down
