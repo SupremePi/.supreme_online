@@ -93,7 +93,6 @@ function main_menu() {
 	clear
 }
 
-
 function supreme_restore() {
     #Reinstall Supreme Toolkit
     echo -e "$(tput setaf 2)Now Restoring Supreme Toolkit And Updating Retropie Menus! $(tput sgr0)"
@@ -127,52 +126,52 @@ function supreme_restore() {
 	sudo rsync -av $rp_menu/rpsetup.rp $sb_menu_pi5/
     fi
     if [ -f $rp_menu/showip.rp ]; then 
-	sudo rsync -av $rp_menu/showip.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/showip.rp $sb_menu_pi5/retropietools/
     fi
     if [ -f $rp_menu/audiosettings.rp ]; then 
-	sudo rsync -av $rp_menu/audiosettings.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/audiosettings.rp $sb_menu_pi5/audiotools/
     fi
     if [ -f $rp_menu/bluetooth.rp ]; then 
-	sudo rsync -av $rp_menu/bluetooth.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/bluetooth.rp $sb_menu_pi5/retropietools/
     fi
     if [ -f $rp_menu/configedit.rp ]; then 
-	sudo rsync -av $rp_menu/configedit.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/configedit.rp $sb_menu_pi5/emulationtools/
     fi
     if [ -f $rp_menu/esthemes.rp ]; then 
-	sudo rsync -av $rp_menu/esthemes.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/esthemes.rp $sb_menu_pi5/visualtools/
     fi
     if [ -f $rp_menu/filemanager.rp ]; then 
-	sudo rsync -av $rp_menu/filemanager.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/filemanager.rp $sb_menu_pi5/retropietools/
     fi
     if [ -f $rp_menu/retroarch.rp ]; then 
-	sudo rsync -av $rp_menu/retroarch.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/retroarch.rp $sb_menu_pi5/retropietools/
     fi
     if [ -f $rp_menu/retronetplay.rp ]; then 
-	sudo rsync -av $rp_menu/retronetplay.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/retronetplay.rp $sb_menu_pi5/retropietools/
     fi
     if [ -f $rp_menu/runcommand.rp ]; then 
-    sudo rsync -av $rp_menu/runcommand.rp $sb_menu_pi5/
+    sudo rsync -av $rp_menu/runcommand.rp $sb_menu_pi5/retropietools/
     fi
     if [ -f $rp_menu/splashscreen.rp ]; then 
-	sudo rsync -av $rp_menu/splashscreen.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/splashscreen.rp $sb_menu_pi5/visualtools/
     fi
     if [ -f $rp_menu/wifi.rp ]; then 
-	sudo rsync -av $rp_menu/wifi.rp $sb_menu_pi5/
+	sudo rsync -av $rp_menu/wifi.rp $sb_menu_pi5/retropietools/
     fi
 	if [ -f /opt/retropie/supplementary/joystick-selection/joystick_selection.sh ]; then 
-	rm $sb_menu_pi5/extra-scripts/joystick_selection.sh
-	ln -s /opt/retropie/supplementary/joystick-selection/joystick_selection.sh $sb_menu_pi5/extra-scripts/joystick_selection.sh
+	rm $sb_menu_pi5/controllertools/joystick_selection.sh
+	ln -s /opt/retropie/supplementary/joystick-selection/joystick_selection.sh $sb_menu_pi5/controllertools/joystick_selection.sh
 	fi
 	   	
     #Rsync Custom Menu files
     if [ -f $rp_menu/bezelproject.sh ]; then 
-    sudo rsync -av $rp_menu/bezelproject.sh $sb_menu_pi5/extra-scripts/
+    sudo rsync -av $rp_menu/bezelproject.sh $sb_menu_pi5/visualtools/
     fi
     if [ -f $rp_menu/hurstythemes.sh ]; then 
-    sudo rsync -av $rp_menu/hurstythemes.sh $sb_menu_pi5/extra-scripts/
+    sudo rsync -av $rp_menu/hurstythemes.sh $sb_menu_pi5/visualtools/
     fi
     if [ -d $rp_menu/imp ]; then 
-    sudo rsync -av $rp_menu/imp/ $sb_menu_pi5/imp/
+    sudo rsync -av $rp_menu/imp/ $sb_menu_pi5/audiotools/imp/
     fi
 	
     #Cool Down
