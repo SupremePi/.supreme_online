@@ -129,7 +129,7 @@ function supreme_restore() {
 	sudo rsync -av $rp_menu/showip.rp $sb_menu_pi5/retropietools/
     fi
     if [ -f $rp_menu/audiosettings.rp ]; then 
-	sudo rsync -av $rp_menu/audiosettings.rp $sb_menu_pi5/audiotools/
+	sudo rsync -av $rp_menu/audiosettings.rp $sb_menu_pi5/retropietools/
     fi
     if [ -f $rp_menu/bluetooth.rp ]; then 
 	sudo rsync -av $rp_menu/bluetooth.rp $sb_menu_pi5/retropietools/
@@ -171,7 +171,7 @@ function supreme_restore() {
     sudo rsync -av $rp_menu/hurstythemes.sh $sb_menu_pi5/visualtools/
     fi
     if [ -d $rp_menu/imp ]; then 
-    sudo rsync -av $rp_menu/imp/ $sb_menu_pi5/audiotools/imp/
+    sudo rsync -av $rp_menu/imp/ $sb_menu_pi5/imp/
     fi
 	
     #Cool Down
