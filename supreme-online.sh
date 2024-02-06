@@ -17,7 +17,3 @@
 #echo "test 1"
 #sleep 5
 #clear
-
-echo hello test 1
-sleep 10
-#test 1
