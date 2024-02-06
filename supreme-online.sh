@@ -17,3 +17,6 @@
 #echo "test 1"
 #sleep 5
 #clear
+
+sleep 50
+#test 1
