@@ -18,5 +18,5 @@
 #sleep 5
 #clear
 
-echo THIS IS A TEST
+echo THIS IS A TEST 2
 sleep 3
