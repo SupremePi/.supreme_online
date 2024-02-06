@@ -18,5 +18,6 @@
 #sleep 5
 #clear
 
-sleep 50
+echo hello test 1
+sleep 10
 #test 1
