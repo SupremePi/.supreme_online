@@ -17,6 +17,3 @@
 #echo "test 1"
 #sleep 5
 #clear
-
-echo THIS IS A TEST 2
-sleep 3
