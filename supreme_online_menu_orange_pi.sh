@@ -38,19 +38,21 @@ function main_menu() {
 	    1 " -  CHECK FOR UPDATES" \
 	    - "" \
 	    2 " -  ORANGE PI INSTALLERS" \
+	    3 " -  SUPREME RETROPIE SETUP SWAP" \
                 - "" \
-            3 " -  POWER OFF PI" \
-            4 " -  RESTART PI" \
+            4 " -  POWER OFF PI" \
+            5 " -  RESTART PI" \
 	        - "" \
-	    5 " -  SUPREME CREDITS" \
+	    6 " -  SUPREME CREDITS" \
             2>&1 > /dev/tty)
 
         case "$choice" in
             1) supreme_updates  ;;
 	    2) orange_pi_installers  ;;
-	    3) supreme_off  ;;			
-            4) supreme_restart  ;;
-	    5) supreme_credits  ;;
+	    3) supreme_setup  ;;
+	    4) supreme_off  ;;			
+            5) supreme_restart  ;;
+	    6) supreme_credits  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -277,6 +279,72 @@ else
 	sleep 5
 clear
 fi
+}
+
+function supreme_setup() {
+    local choice
+	
+    while true; do
+        choice=$(dialog --backtitle "$BACKTITLE" --title " RETROPIE - SETUP - SWAP " \
+            --ok-label OK --cancel-label Exit \
+            --menu "$sb_version" 25 75 20 \
+            - "*** AVAILABLE INSTALLERS ***" \
+            - "" \
+	    1 " -  SWAP TO OFFICIAL RETROPIE SETUP" \
+	    2 " -  SWAP TO SUPREME RETROPIE SETUP " \
+	    3 " -  OPEN OR INSTALL RETROPIE EXTRAS (BY EXARKUNIV)" \
+        2>&1 > /dev/tty)
+
+        case "$choice" in
+        1) swap_official  ;;
+	    2) swap_supreme  ;;
+	    3) add_extras  ;;	
+        *)  break ;;
+        esac
+    done
+	clear
+}
+
+function swap_official() {
+    echo -e "$(tput setaf 2)Now Adding The Official RetroPie Setup! $(tput sgr0)"
+    sleep 3
+    if [ -d /home/pi/RetroPie-Setup ]; then
+    sudo rm -R /home/pi/RetroPie-Setup
+    fi
+    git clone https://github.com/RetroPie/RetroPie-Setup /home/pi/RetroPie-Setup
+    echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+    sleep 3
+}
+
+function swap_supreme() {
+    echo -e "$(tput setaf 2)Now Adding The Supreme RetroPie Setup! $(tput sgr0)"
+    sleep 3
+    if [ -d /home/pi/RetroPie-Setup ]; then
+    sudo rm -R /home/pi/RetroPie-Setup
+    fi
+    git clone https://github.com/SupremePi/RetroPie-Setup-Rearmit /home/pi/RetroPie-Setup
+    echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+    sleep 3
+}
+
+function add_extras() {
+    echo -e "$(tput setaf 2)Now Opening RetroPie Extras! $(tput sgr0)"
+    sleep 3
+    if [ ! -d /home/pi/RetroPie-Extra ]; then
+    if (dialog --title "Add RetroPie Extras" --yesno "Would You Like To Add The RetroPie Setup Extras?" 0 0 )
+    then
+    cd ~
+    git clone https://github.com/Exarkuniv/RetroPie-Extra.git
+    cd /home/pi/RetroPie-Extra/
+    ./install-extras.sh
+    fi
+    else
+    if (dialog --title "Pick Your RetroPie Extras" --yesno "Would You Like To Pick Your RetroPie Setup Extras!" 0 0 )
+    then
+    cd /home/pi/RetroPie-Extra/
+    ./install-extras.sh
+    fi
+    fi
 }
 	
 function supreme_credits() {
