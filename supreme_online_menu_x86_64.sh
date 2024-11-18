@@ -92,11 +92,11 @@ function orange_pi_installers() {
             --menu "$sb_version" 25 75 20 \
             - "*** AVAILABLE INSTALLERS ***" \
             - "" \
-	    1 " -  INSTALL OR UPDATE RYUJINX EMULATOR" \
+	    1 " -  SORRY NO INSTALLERS AS OF YET" \
             2>&1 > /dev/tty)
 
         case "$choice" in
-            1) installer_ryujinx  ;;
+            1) installer_sorry  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -104,59 +104,9 @@ function orange_pi_installers() {
 	clear
 }
 
-installer_ryujinx() {
-#!/bin/sh
-set -u
-APP=ryujinx
-SITE="Ryujinx/release-channel-master"
-
-# CREATE DIRECTORIES
-[ -n "$APP" ] && mkdir -p "./$APP/tmp" && cd "./$APP/tmp" || exit 1
-
-# DOWNLOAD AND EXTRACT THE ARCHIVE
-version=$(wget -q https://api.github.com/repos/$SITE/releases -O - | sed 's/[()",{} ]/\n/g' | grep -oi "https.*linux.*x64.*gz$" | head -1)
-wget "$version" && tar fx ./*tar* || exit 1
-cd ..
-mkdir -p "./$APP.AppDir/usr/bin"
-mv ./tmp/*/* "./$APP.AppDir/usr/bin"
-cd "./$APP.AppDir" || exit 1
-
-# DESKTOP ENTRY AND ICON
-DESKTOP="https://raw.githubusercontent.com/Ryujinx/Ryujinx/master/distribution/linux/Ryujinx.desktop"
-ICON="https://raw.githubusercontent.com/Ryujinx/Ryujinx/master/src/Ryujinx/Ryujinx.ico"
-wget $DESKTOP -O ./$APP.desktop && wget $ICON -O ./Ryujinx.png && ln -s Ryujinx.png ./.DirIcon
-
-# AppRun
-cat >> ./AppRun << 'EOF'
-#!/bin/sh
-CURRENTDIR="$(readlink -f "$(dirname "$0")")"
-exec "$CURRENTDIR"/usr/bin/Ryujinx.sh "$@"
-EOF
-chmod a+x ./AppRun
-
-# MAKE APPIMAGE
-cd ..
-APPIMAGETOOL="https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
-wget -q "$APPIMAGETOOL" -O ./appimagetool
-chmod a+x ./appimagetool
-
-# Do the thing!
-export VERSION="$(echo "$version" | awk -F"/" '{print $(NF-1)}')"
-export ARCH=x86_64
-./appimagetool --comp zstd --mksquashfs-opt -Xcompression-level --mksquashfs-opt 20 \
-  -u "gh-releases-zsync|pi|Ryujinx-AppImage|continuous|*x86_64.AppImage.zsync" \
-  ./"$APP".AppDir Ryujinx.AppImage
-
-# Move the AppImage to the desired directory with root permissions
-if [ ! -d /opt/retropie/emulators/switch ]; then
-  sudo mkdir -p /opt/retropie/emulators/switch
-fi
-if [ -f /opt/retropie/emulators/switch/Ryujinx.AppImage ]; then
-  sudo rm /opt/retropie/emulators/switch/Ryujinx.AppImage
-fi
-sudo mv ./Ryujinx.AppImage /opt/retropie/emulators/switch/
-[ -n "$APP" ] && cd .. && rm -rf ./"$APP" || exit 1
-echo "All Done!"
+installer_sorry() {
+echo "SORRY NO INSTALLERS AS OF YET"
+sleep 5
 }
 
 function supreme_setup() {
