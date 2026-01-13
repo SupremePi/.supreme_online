@@ -47,11 +47,12 @@ function main_menu() {
             3 " -  CHECK FOR ULTRA FIXES" \
 			4 " -  ULTRA ATTRACT-MODE RESTORE" \
 			5 " -  SUPREME INSTALLERS" \
+			6 " -  SUPREME RETROPIE SETUP SWAP" \
 	        - "" \
-            6 " -  POWER OFF PI" \
-            7 " -  RESTART PI" \
+            7 " -  POWER OFF PI" \
+            8 " -  RESTART PI" \
 	        - "" \
-			8 " -  SUPREME CREDITS" \
+			9 " -  SUPREME CREDITS" \
             2>&1 > /dev/tty)
 
         case "$choice" in
@@ -60,9 +61,10 @@ function main_menu() {
 			3) ultra_fixes  ;;
 			4) ultra_attract  ;;
 			5) ultra_installers  ;;
-	        6) supreme_off  ;;
-            7) supreme_restart  ;;
-			8) supreme_credits  ;;
+			6) supreme_setup ;;
+	        7) supreme_off  ;;
+            8) supreme_restart  ;;
+			9) supreme_credits  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -461,7 +463,86 @@ else
 	sleep 5
 clear
 fi
-}	
+}
+
+function supreme_setup() {
+    local choice
+	
+    while true; do
+        choice=$(dialog --backtitle "$BACKTITLE" --title " RETROPIE - SETUP - SWAP " \
+            --ok-label OK --cancel-label Exit \
+            --menu "$sb_version" 25 75 20 \
+            - "*** AVAILABLE INSTALLERS ***" \
+            - "" \
+	    1 " -  SWAP TO OFFICIAL RETROPIE SETUP" \
+	    2 " -  SWAP TO SUPREME RETROPIE SETUP " \
+	    3 " -  SWAP TO RAPID EDWIN RETROPIE SETUP" \
+	    4 " -  OPEN OR INSTALL RETROPIE EXTRAS (BY EXARKUNIV)" \
+        2>&1 > /dev/tty)
+
+        case "$choice" in
+        1) swap_official  ;;
+	    2) swap_supreme  ;;
+	    3) swap_rapid  ;;
+	    4) add_extras  ;;	
+        *)  break ;;
+        esac
+    done
+	clear
+}
+
+function swap_official() {
+    echo -e "$(tput setaf 2)Now Adding The Official RetroPie Setup! $(tput sgr0)"
+    sleep 3
+    if [ -d /home/pi/RetroPie-Setup ]; then
+    sudo rm -R /home/pi/RetroPie-Setup
+    fi
+    git clone https://github.com/RetroPie/RetroPie-Setup /home/pi/RetroPie-Setup
+    echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+    sleep 3
+}
+
+function swap_supreme() {
+    echo -e "$(tput setaf 2)Now Adding The Supreme RetroPie Setup! $(tput sgr0)"
+    sleep 3
+    if [ -d /home/pi/RetroPie-Setup ]; then
+    sudo rm -R /home/pi/RetroPie-Setup
+    fi
+    git clone https://github.com/supremeretrogaming/RetroPie-Setup /home/pi/RetroPie-Setup
+    echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+    sleep 3
+}
+
+function swap_rapid() {
+    echo -e "$(tput setaf 2)Now Adding The Rapid Edwin RetroPie Setup! $(tput sgr0)"
+    sleep 3
+    if [ -d /home/pi/RetroPie-Setup ]; then
+    sudo rm -R /home/pi/RetroPie-Setup
+    fi
+    git clone https://github.com/RapidEdwin08/RetroPie-Setup /home/pi/RetroPie-Setup
+    echo -e "$(tput setaf 2)Done! $(tput sgr0)"
+    sleep 3
+}
+
+function add_extras() {
+    echo -e "$(tput setaf 2)Now Opening RetroPie Extras! $(tput sgr0)"
+    sleep 3
+    if [ ! -d /home/pi/RetroPie-Extra ]; then
+    if (dialog --title "Add RetroPie Extras" --yesno "Would You Like To Add The RetroPie Setup Extras?" 0 0 )
+    then
+    cd ~
+    git clone https://github.com/Exarkuniv/RetroPie-Extra.git
+    cd /home/pi/RetroPie-Extra/
+    ./install-extras.sh
+    fi
+    else
+    if (dialog --title "Pick Your RetroPie Extras" --yesno "Would You Like To Pick Your RetroPie Setup Extras!" 0 0 )
+    then
+    cd /home/pi/RetroPie-Extra/
+    ./install-extras.sh
+    fi
+    fi
+}
 
 function supreme_off() {
 	dialog --infobox "...Shutting Down..." 3 23 ; sleep 1
