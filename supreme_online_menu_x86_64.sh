@@ -150,7 +150,8 @@ function swap_supreme() {
     if [ -d /home/pi/RetroPie-Setup ]; then
     sudo rm -R /home/pi/RetroPie-Setup
     fi
-    git clone https://github.com/SupremePi/RetroPie-Setup-Rearmit /home/pi/RetroPie-Setup
+	git clone https://github.com/supremeretrogaming/RetroPie-Setup /home/pi/RetroPie-Setup
+    #git clone https://github.com/SupremePi/RetroPie-Setup-Rearmit /home/pi/RetroPie-Setup
     echo -e "$(tput setaf 2)Done! $(tput sgr0)"
     sleep 3
 }
