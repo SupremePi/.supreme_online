@@ -30,7 +30,7 @@ function main_menu() {
     local choice
 	
     while true; do
-        choice=$(dialog --backtitle "$BACKTITLE" --title " SUPREME - ONLINE " \
+        choice=$(dialog --backtitle "$BACKTITLE" --title " SUPREME - ONLINE V3" \
             --ok-label OK --cancel-label Exit \
             --menu "$sb_version" 25 75 20 \
             - "*** AVAILABLE ONLINE SELECTIONS ***" \
