@@ -48,7 +48,7 @@ function main_menu() {
 
         case "$choice" in
             1) supreme_updates  ;;
-	    2) orange_pi_installers  ;;
+	    2) x86_64_installers  ;;
 	    3) supreme_setup  ;;
 	    4) supreme_off  ;;			
             5) supreme_restart  ;;
@@ -83,7 +83,7 @@ function supreme_restart() {
 	sudo reboot
 }
 
-function orange_pi_installers() {
+function x86_64_installers() {
     local choice
 	
     while true; do
@@ -92,11 +92,11 @@ function orange_pi_installers() {
             --menu "$sb_version" 25 75 20 \
             - "*** AVAILABLE INSTALLERS ***" \
             - "" \
-	    1 " -  SORRY NO INSTALLERS AS OF YET" \
+	    1 " - STREAMBERT INSTALLER" \
             2>&1 > /dev/tty)
 
         case "$choice" in
-            1) installer_sorry  ;;
+            1) streambert_installer  ;;
             -) none ;;
             *)  break ;;
         esac
@@ -104,9 +104,83 @@ function orange_pi_installers() {
 	clear
 }
 
-installer_sorry() {
-echo "SORRY NO INSTALLERS AS OF YET"
-sleep 5
+streambert_installer() {
+
+set -e
+
+STREAMBERT_URL="https://github.com/truelockmc/streambert/releases/download/2.4/Streambert-2.4.0.AppImage"
+
+CLOUD_DIR="$HOME/RetroPie/roms/cloud"
+BOXART_DIR="$CLOUD_DIR/boxart"
+LAUNCHER_PATH="$CLOUD_DIR/Streambert.sh"
+
+PORTS_ROM_DIR="$HOME/RetroPie/roms/ports"
+PORTS_BOXART_DIR="$PORTS_ROM_DIR/boxart"
+PORTS_LAUNCHER_PATH="$PORTS_ROM_DIR/Streambert.sh"
+
+SUPP_DIR="/opt/retropie/supplementary/streambert"
+EMU_DIR="/opt/retropie/emulators/streambert"
+PORTS_CONFIG_DIR="/opt/retropie/configs/ports/streambert"
+
+APPIMAGE_SAVE_PATH="$EMU_DIR/Streambert.AppImage"
+ICON_PATH="$BOXART_DIR/streambert.png"
+
+ARCH=$(uname -m)
+
+case "$ARCH" in
+    x86_64|aarch64)
+        echo "Supported architecture: $ARCH"
+        ;;
+    *)
+        echo "Unsupported architecture: $ARCH"
+        exit 1
+        ;;
+esac
+
+sudo apt update -qq
+
+sudo apt install -y curl wget matchbox-window-manager x11-xserver-utils \
+libnss3 libxss1 libasound2 libgtk-3-0 libxtst6 fuse
+
+mkdir -p "$CLOUD_DIR" "$BOXART_DIR" "$PORTS_ROM_DIR" "$PORTS_BOXART_DIR"
+sudo mkdir -p "$SUPP_DIR" "$EMU_DIR" "$PORTS_CONFIG_DIR"
+
+wget -O /tmp/Streambert.AppImage "$STREAMBERT_URL"
+sudo mv /tmp/Streambert.AppImage "$APPIMAGE_SAVE_PATH"
+sudo chmod +x "$APPIMAGE_SAVE_PATH"
+
+ICON_URL="https://raw.githubusercontent.com/truelockmc/streambert/main/public/icon.png"
+wget -O "$ICON_PATH" "$ICON_URL" || true
+
+sudo tee "$SUPP_DIR/streambert.sh" > /dev/null <<EOF
+#!/bin/bash
+xset -dpms s off s noblank
+matchbox-window-manager -use_titlebar no &
+"$APPIMAGE_SAVE_PATH" --no-sandbox --start-fullscreen
+EOF
+
+sudo chmod +x "$SUPP_DIR/streambert.sh"
+
+cat > "$LAUNCHER_PATH" <<EOF
+#!/bin/bash
+"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "streambert" ""
+EOF
+
+chmod +x "$LAUNCHER_PATH"
+
+cat > "$PORTS_LAUNCHER_PATH" <<EOF
+#!/bin/bash
+"/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "streambert" ""
+EOF
+
+chmod +x "$PORTS_LAUNCHER_PATH"
+
+sudo tee "$PORTS_CONFIG_DIR/emulators.cfg" > /dev/null <<EOF
+streambert = "XINIT: /opt/retropie/supplementary/streambert/streambert.sh"
+default = "streambert"
+EOF
+
+dialog --msgbox "Streambert installation complete!" 10 60
 }
 
 function supreme_setup() {
