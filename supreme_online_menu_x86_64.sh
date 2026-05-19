@@ -105,62 +105,141 @@ function x86_64_installers() {
 }
 
 streambert_installer() {
+# ============================================
+# Streambert RetroPie Installer
+# ============================================
 
 set -e
 
+# ============================================
+# Variables
+# ============================================
+
 STREAMBERT_URL="https://github.com/truelockmc/streambert/releases/download/2.4/Streambert-2.4.0.AppImage"
 
+# Cloud paths
 CLOUD_DIR="$HOME/RetroPie/roms/cloud"
 BOXART_DIR="$CLOUD_DIR/boxart"
 LAUNCHER_PATH="$CLOUD_DIR/Streambert.sh"
 
+# Ports paths
 PORTS_ROM_DIR="$HOME/RetroPie/roms/ports"
 PORTS_BOXART_DIR="$PORTS_ROM_DIR/boxart"
 PORTS_LAUNCHER_PATH="$PORTS_ROM_DIR/Streambert.sh"
 
+# RetroPie integration
 SUPP_DIR="/opt/retropie/supplementary/streambert"
 EMU_DIR="/opt/retropie/emulators/streambert"
 PORTS_CONFIG_DIR="/opt/retropie/configs/ports/streambert"
 
+# AppImage install path
 APPIMAGE_SAVE_PATH="$EMU_DIR/Streambert.AppImage"
+
+# Icon path
 ICON_PATH="$BOXART_DIR/streambert.png"
+
+# ============================================
+# Architecture check
+# ============================================
 
 ARCH=$(uname -m)
 
 case "$ARCH" in
     x86_64|aarch64)
-        echo "Supported architecture: $ARCH"
+        echo "Detected supported architecture: $ARCH"
         ;;
     *)
-        echo "Unsupported architecture: $ARCH"
+        echo "ERROR: Unsupported architecture: $ARCH"
+        echo "64-bit x86 or ARM required."
         exit 1
         ;;
 esac
 
+# ============================================
+# Install dependencies
+# ============================================
+
+echo "=== Installing dependencies ==="
+
 sudo apt update -qq
 
-sudo apt install -y curl wget matchbox-window-manager x11-xserver-utils \
-libnss3 libxss1 libasound2 libgtk-3-0 libxtst6 fuse
+sudo apt install -y \
+    curl \
+    wget \
+    matchbox-window-manager \
+    x11-xserver-utils \
+    libnss3 \
+    libxss1 \
+    libasound2 \
+    libgtk-3-0 \
+    libxtst6 \
+    fuse
 
-mkdir -p "$CLOUD_DIR" "$BOXART_DIR" "$PORTS_ROM_DIR" "$PORTS_BOXART_DIR"
-sudo mkdir -p "$SUPP_DIR" "$EMU_DIR" "$PORTS_CONFIG_DIR"
+# ============================================
+# Create folders
+# ============================================
+
+echo "=== Creating directories ==="
+
+mkdir -p "$CLOUD_DIR"
+mkdir -p "$BOXART_DIR"
+
+mkdir -p "$PORTS_ROM_DIR"
+mkdir -p "$PORTS_BOXART_DIR"
+
+sudo mkdir -p "$SUPP_DIR"
+sudo mkdir -p "$EMU_DIR"
+sudo mkdir -p "$PORTS_CONFIG_DIR"
+
+# ============================================
+# Download Streambert
+# ============================================
+
+echo "=== Downloading Streambert AppImage ==="
 
 wget -O /tmp/Streambert.AppImage "$STREAMBERT_URL"
+
 sudo mv /tmp/Streambert.AppImage "$APPIMAGE_SAVE_PATH"
+
 sudo chmod +x "$APPIMAGE_SAVE_PATH"
 
+# ============================================
+# Download artwork
+# ============================================
+
+echo "=== Downloading artwork ==="
+
 ICON_URL="https://raw.githubusercontent.com/truelockmc/streambert/main/public/icon.png"
+
 wget -O "$ICON_PATH" "$ICON_URL" || true
+
+cp "$ICON_PATH" "$PORTS_BOXART_DIR/streambert.png" || true
+
+# ============================================
+# Create launcher script
+# ============================================
+
+echo "=== Creating launcher ==="
 
 sudo tee "$SUPP_DIR/streambert.sh" > /dev/null <<EOF
 #!/bin/bash
+
 xset -dpms s off s noblank
+
 matchbox-window-manager -use_titlebar no &
+
 "$APPIMAGE_SAVE_PATH" --no-sandbox --start-fullscreen
 EOF
 
 sudo chmod +x "$SUPP_DIR/streambert.sh"
 
+# ============================================
+# Create RetroPie launchers
+# ============================================
+
+echo "=== Creating RetroPie launchers ==="
+
+# Cloud launcher
 cat > "$LAUNCHER_PATH" <<EOF
 #!/bin/bash
 "/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "streambert" ""
@@ -168,6 +247,7 @@ EOF
 
 chmod +x "$LAUNCHER_PATH"
 
+# Ports launcher
 cat > "$PORTS_LAUNCHER_PATH" <<EOF
 #!/bin/bash
 "/opt/retropie/supplementary/runcommand/runcommand.sh" 0 _PORT_ "streambert" ""
@@ -175,12 +255,132 @@ EOF
 
 chmod +x "$PORTS_LAUNCHER_PATH"
 
+# ============================================
+# Configure RetroPie port
+# ============================================
+
+echo "=== Configuring RetroPie port ==="
+
 sudo tee "$PORTS_CONFIG_DIR/emulators.cfg" > /dev/null <<EOF
 streambert = "XINIT: /opt/retropie/supplementary/streambert/streambert.sh"
 default = "streambert"
 EOF
 
-dialog --msgbox "Streambert installation complete!" 10 60
+sudo chmod 644 "$PORTS_CONFIG_DIR/emulators.cfg"
+
+# ============================================
+# Update gamelist.xml files
+# ============================================
+
+update_gamelist() {
+
+    local GAMELIST_XML="$1"
+    local ENTRY_PATH="$2"
+
+    if [[ -f "$GAMELIST_XML" ]]; then
+
+        if grep -q "<name>Streambert</name>" "$GAMELIST_XML"; then
+            echo "Streambert already exists in $GAMELIST_XML"
+        else
+
+            sed -i '/<\/gameList>/ i \
+  <game>\n\
+    <path>'"$ENTRY_PATH"'</path>\n\
+    <name>Streambert</name>\n\
+    <desc>Streambert Streaming App</desc>\n\
+    <image>./boxart/streambert.png</image>\n\
+  </game>' "$GAMELIST_XML"
+
+            echo "Added Streambert to $GAMELIST_XML"
+        fi
+
+    else
+
+        echo "Creating new gamelist.xml at $GAMELIST_XML"
+
+cat > "$GAMELIST_XML" <<EOF
+<?xml version="1.0"?>
+<gameList>
+  <game>
+    <path>$ENTRY_PATH</path>
+    <name>Streambert</name>
+    <desc>Streambert Streaming App</desc>
+    <image>./boxart/streambert.png</image>
+  </game>
+</gameList>
+EOF
+
+    fi
+}
+
+echo "=== Updating Cloud gamelist ==="
+
+update_gamelist \
+"$CLOUD_DIR/gamelist.xml" \
+"./Streambert.sh"
+
+echo "=== Updating Ports gamelist ==="
+
+update_gamelist \
+"$PORTS_ROM_DIR/gamelist.xml" \
+"./Streambert.sh"
+
+# ============================================
+# Create desktop launcher
+# ============================================
+
+echo "=== Creating desktop launcher ==="
+
+mkdir -p "$HOME/.local/share/applications"
+
+cat <<EOF > "$HOME/.local/share/applications/streambert.desktop"
+[Desktop Entry]
+Name=Streambert
+Comment=Launch Streambert
+Exec=$APPIMAGE_SAVE_PATH --no-sandbox
+Icon=$ICON_PATH
+Terminal=false
+Type=Application
+Categories=Video;
+EOF
+
+chmod +x "$HOME/.local/share/applications/streambert.desktop"
+
+mkdir -p "$HOME/Desktop"
+
+cp "$HOME/.local/share/applications/streambert.desktop" \
+"$HOME/Desktop/"
+
+chmod +x "$HOME/Desktop/streambert.desktop"
+
+# ============================================
+# Finished
+# ============================================
+
+echo
+echo "============================================"
+echo "Streambert installation complete!"
+echo "============================================"
+echo
+echo "Added to:"
+echo "- RetroPie Cloud"
+echo "- RetroPie Ports"
+echo "- Desktop shortcut"
+
+# ============================================
+# IMPORTANT MESSAGE (DIALOG)
+# ============================================
+
+dialog --title "IMPORTANT" --msgbox "\
+Please take a picture of this link and open it on another device:
+
+https://github.com/truelockmc/streambert/blob/main/tmdb-tutorial.md
+
+Follow the steps to get your FREE TMDB API key.
+
+The API key is needed to load media correctly!
+
+REAL INFO IS NOT REQUIRED." 12 80
 }
 
 function supreme_setup() {
