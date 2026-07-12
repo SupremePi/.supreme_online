@@ -115,7 +115,7 @@ set -e
 # Variables
 # ============================================
 
-STREAMBERT_URL="https://github.com/truelockmc/streambert/releases/download/2.4/Streambert-2.4.0.AppImage"
+STREAMBERT_URL="https://github.com/KUAILESHANGWEI/streambert/releases/download/2.6.0/Streambert-2.6.0.AppImage"
 
 # Cloud paths
 CLOUD_DIR="$HOME/RetroPie/roms/cloud"
