@@ -209,7 +209,7 @@ sudo chmod +x "$APPIMAGE_SAVE_PATH"
 
 echo "=== Downloading artwork ==="
 
-ICON_URL="https://raw.githubusercontent.com/truelockmc/streambert/main/public/icon.png"
+ICON_URL="https://raw.githubusercontent.com/KUAILESHANGWEI/streambert/main/public/icon.png"
 
 wget -O "$ICON_PATH" "$ICON_URL" || true
 
